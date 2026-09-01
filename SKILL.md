@@ -23,8 +23,7 @@ new definition from its required front matter and 19 table definitions.
   `CURRENT_IMPLEMENTATION`, `OBSERVATION` and `PROPOSAL`. Code or EA can prove
   implementation facts, never business authority.
 - A confirmed normative statement needs exact source references. Cite the
-  edition, locator, clause/page/range, effective or observation date and SHA-256
-  where captured.
+  edition, locator, clause/page/range, and effective or observation date.
 - Use `UNKNOWN`, `CONFLICT` or `NOT_APPLICABLE` explicitly. Never fill a gap by
   inference, similarity, model confidence, or copying an adjacent process.
 - Keep proposals and open questions out of the confirmed contract. Ministry or
@@ -57,8 +56,8 @@ new definition from its required front matter and 19 table definitions.
    implementation; record conflicts rather than choosing silently.
 4. Fill every mandatory section. Use an explicit `NOT_APPLICABLE` row rather
    than omitting a section.
-5. Check every required section,table header,record namespace,source reference,
-   hash and enum against `STANDARD.md`.
+5. Check every required section,table header,record namespace,source reference
+   and enum against `STANDARD.md`.
 
 6. Manually perform semantic,source,direct-dependency,potential-impact and
    reciprocal connected-definition review.

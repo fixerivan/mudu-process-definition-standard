@@ -302,12 +302,12 @@ Use `SOURCE_CONFLICT`, `INTENT_QUESTION`, `IMPLEMENTATION_GAP`, `EVIDENCE_GAP`, 
 ```
 
 Record every definition version. Acceptance identifies the human authority and
-the exact accepted Git/blob identity through the surrounding governed workflow.
+the exact accepted Git revision through the surrounding governed workflow.
 
 ### 19. Register zdrojov
 
 ```text
-| ID | Typ | Názov/verzia | Lokátor | Ustanovenie/rozsah | SHA-256 | Účinnosť/pozorovanie |
+| ID | Typ | Názov/verzia | Lokátor | Ustanovenie/rozsah | Účinnosť/pozorovanie |
 ```
 
 Source types include `LAW`, `OFFICIAL_PROCEDURE`, `OFFICIAL_FORM`,
@@ -315,12 +315,13 @@ Source types include `LAW`, `OFFICIAL_PROCEDURE`, `OFFICIAL_FORM`,
 `SOURCE_CODE`, `CONFIGURATION`, `OUTPUT_TEMPLATE`, `RUNTIME_EVIDENCE`, and
 `SOURCE_DRAFT`.
 
-Every source reference used elsewhere must exist here. A missing hash is
-`UNKNOWN`,never blank. URLs alone do not identify a source revision.
+Every source reference used elsewhere must exist here. Identify the exact
+edition, locator, provision or range, and effective or observation date.
 
-A source-clean public copy may replace a private locator and hash with
-`UNKNOWN`,but it must say that the private evidence was not redistributed. Such
-a copy is review material,not independently reproducible implementation evidence.
+A source-clean public copy may replace a private locator with
+`not published in this repository`,but it must say that the private evidence was
+not redistributed. Such a copy is review material,not independently reproducible
+implementation evidence.
 
 ## Versioning and freeze
 

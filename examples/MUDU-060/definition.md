@@ -18,7 +18,7 @@ related_processes: [MUDU-059, MUDU-061, MUDU-062, MUDU-063, MUDU-091]
 
 # MUDU-060 — Predbežné pridelenie registrovej značky lietadlu
 
-> **Public example:** normative public sources remain exactly cited. Private project and implementation evidence is described but not redistributed; its public locator and hash are therefore `UNKNOWN`. This document remains `DRAFT` and `UNCONFIRMED`.
+> **Public example:** normative public sources remain exactly cited. Private project and implementation evidence is described but not redistributed. This document remains `DRAFT` and `UNCONFIRMED`.
 
 > Dopravný úrad na žiadosť vlastníka pred zápisom lietadla do registra
 > predbežne pridelí registrovú značku; rozhodnutie platí jeden rok od
@@ -242,13 +242,13 @@ related_processes: [MUDU-059, MUDU-061, MUDU-062, MUDU-063, MUDU-091]
 
 ## 19. Register zdrojov
 
-| ID | Typ | Názov/verzia | Lokátor | Ustanovenie/rozsah | SHA-256 | Účinnosť/pozorovanie |
-| --- | --- | --- | --- | --- | --- | --- |
-| SRC-060-001 | LAW | Zákon č. 143/1998 Z. z.,časová verzia | https://static.slov-lex.sk/pdf/SK/ZZ/1998/143/ZZ_1998_143_20260101.pdf | § 25;§ 26 ods. 1-15;najmä ods. 3-4,13-14 | 0f0dc9039cabbd83e7096ff290bb0f555c8274f2160a8b307dff8a5cc3a754b3 | účinné od 2026-01-01 |
-| SRC-060-002 | LAW | Vyhláška č. 274/2024 Z. z. | https://static.slov-lex.sk/static/SK/ZZ/2024/274/20241115.html | § 4;§ 6-7;úplný text § 1-8 | c573893fcebc0ce4f5a095abfb98a6bf43b82a33974b8346fa9ea185f66a6152 | účinné od 2024-11-15;HTML text pozorovaný 2026-09-01 |
-| SRC-060-003 | OFFICIAL_FORM | DÚ F469-B/v1/OSL | https://letectvo.nsat.sk/wp-content/uploads/sites/2/2023/03/F469_B_v1_PRIDELENIE-POZN%C3%81VACEJ-ZNA%C4%8CKY_FINAL.pdf | všetkých 8 strán | b70e6bde4f11de0f1ef6b73a3008262401a7c9d29a5407e14af766ddc2adfd63 | aktuálne prepojené DÚ;pozorované 2026-08-31 |
-| SRC-060-004 | CONFIGURATION | Aircraft registration EA/code context v2 | not published in this repository | ID60-63,EA14/108/13,CSV,XML,outputs,CLK | UNKNOWN | zachytené 2026-08-31;private/project evidence reviewed internally;not redistributed |
-| SRC-060-005 | CONFIGURATION | Katalóg služieb IS CRDÚ | not published in this repository | riadok ID60 | UNKNOWN | zachytená revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-060-006 | OUTPUT_TEMPLATE | Rozhodnutie o pridelení poznávacej značky | not published in this repository | celý dokument | UNKNOWN | zachytená revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-060-007 | SOURCE_DRAFT | PM návrh „MUDU ID060 Žiadosť o pridelenie poznávacej značky lietadla“ v1.0 | not published in this repository | celý dokument,18 kapitol,16 tabuliek | UNKNOWN | návrh 2026-08-28;prijaté 2026-09-01;private/project evidence reviewed internally;not redistributed |
-| SRC-060-008 | LAW | Zákon č. 145/1995 Z. z.,časová verzia | https://static.slov-lex.sk/static/SK/ZZ/1995/145/20260901.html | § 6 ods. 2;§ 8-9;sadzobník položka 92 písm. e) | 6ee20746fa191be9ecfbd636770bb78d452fb392716e0e9e124d0e35ee0b8aed | účinné od 2026-09-01;raw HTML zachytené 2026-09-01 |
+| ID | Typ | Názov/verzia | Lokátor | Ustanovenie/rozsah | Účinnosť/pozorovanie |
+| --- | --- | --- | --- | --- | --- |
+| SRC-060-001 | LAW | Zákon č. 143/1998 Z. z.,časová verzia | https://static.slov-lex.sk/pdf/SK/ZZ/1998/143/ZZ_1998_143_20260101.pdf | § 25;§ 26 ods. 1-15;najmä ods. 3-4,13-14 | účinné od 2026-01-01 |
+| SRC-060-002 | LAW | Vyhláška č. 274/2024 Z. z. | https://static.slov-lex.sk/static/SK/ZZ/2024/274/20241115.html | § 4;§ 6-7;úplný text § 1-8 | účinné od 2024-11-15;HTML text pozorovaný 2026-09-01 |
+| SRC-060-003 | OFFICIAL_FORM | DÚ F469-B/v1/OSL | https://letectvo.nsat.sk/wp-content/uploads/sites/2/2023/03/F469_B_v1_PRIDELENIE-POZN%C3%81VACEJ-ZNA%C4%8CKY_FINAL.pdf | všetkých 8 strán | aktuálne prepojené DÚ;pozorované 2026-08-31 |
+| SRC-060-004 | CONFIGURATION | Aircraft registration EA/code context v2 | not published in this repository | ID60-63,EA14/108/13,CSV,XML,outputs,CLK | zachytené 2026-08-31;private/project evidence reviewed internally;not redistributed |
+| SRC-060-005 | CONFIGURATION | Katalóg služieb IS CRDÚ | not published in this repository | riadok ID60 | zachytená revízia;private/project evidence reviewed internally;not redistributed |
+| SRC-060-006 | OUTPUT_TEMPLATE | Rozhodnutie o pridelení poznávacej značky | not published in this repository | celý dokument | zachytená revízia;private/project evidence reviewed internally;not redistributed |
+| SRC-060-007 | SOURCE_DRAFT | PM návrh „MUDU ID060 Žiadosť o pridelenie poznávacej značky lietadla“ v1.0 | not published in this repository | celý dokument,18 kapitol,16 tabuliek | návrh 2026-08-28;prijaté 2026-09-01;private/project evidence reviewed internally;not redistributed |
+| SRC-060-008 | LAW | Zákon č. 145/1995 Z. z.,časová verzia | https://static.slov-lex.sk/static/SK/ZZ/1995/145/20260901.html | § 6 ods. 2;§ 8-9;sadzobník položka 92 písm. e) | účinné od 2026-09-01;raw HTML zachytené 2026-09-01 |
