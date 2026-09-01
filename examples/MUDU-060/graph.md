@@ -1,22 +1,29 @@
-# MUDU-060 graph — preliminary aircraft registration mark
+# MUDU-060 — predbežné pridelenie registrovej značky
 
-`DRAFT / UNCONFIRMED`. This graph is a reading aid,not authority.
+`DRAFT / UNCONFIRMED` — pracovný návrh bez schválenia vecným gestorom.
+
+Diagram ukazuje iba zjednodušený priebeh. Úplné pravidlá sú v
+[`definition.md`](definition.md), najmä v sekciách 10 a 17.
 
 ```mermaid
 graph TD
-    A["Owner requests preliminary mark"] --> B["Check aircraft and mark data"]
-    B --> C["Decide"]
-    C -->|Approved| D["Decision becomes final"]
-    D --> E["Preliminary allocation is valid for one year"]
-    E --> F["Owner may submit MUDU-061 registration"]
-    C -->|Rejected or stopped| X["No preliminary allocation"]
+    A["Vlastník alebo jeho zástupca podá žiadosť"] --> B["Úrad skontroluje lietadlo, údaje a navrhovanú značku"]
+    B --> C["Úrad rozhodne"]
+    C -->|Žiadosť zamietnutá alebo konanie zastavené| X["Značka nie je predbežne pridelená"]
+    C -->|Kladné právoplatné rozhodnutie| D["Značka je predbežne pridelená na jeden rok"]
+    D --> E["Vlastník podá MUDU-061 do jedného roka?"]
+    E -->|Áno| F["Predbežné pridelenie zostane platné počas zápisu"]
+    E -->|Nie| G["Predbežné pridelenie zanikne"]
 ```
 
-Direct handoff:`MUDU-061` registration. Portfolio impact only:`MUDU-062`,
-`MUDU-063` and `MUDU-091` share later aircraft or mark lifecycle data but are
-not steps in MUDU-060.
+**Priame pokračovanie:** MUDU-061 — zápis lietadla. MUDU-062, MUDU-063 a
+MUDU-091 používajú neskôr rovnaké lietadlo alebo značku, ale nie sú krokmi
+MUDU-060.
 
-## Open issues — not part of the process flow
+## Najdôležitejšie otvorené otázky — nie sú súčasťou toku
 
-- `GAP-060-005`:define how two simultaneous requests are prevented from reserving the same mark.
-- `GAP-060-002`:reconcile the current form and attachment configuration with current law.
+- `GAP-060-002`: ktoré prílohy sú naozaj oprávnené podľa aktuálneho práva;
+- `Q-060-001`: či osobitná značka pre skúšobný let patrí do MUDU-060;
+- `GAP-060-005`: ako zabrániť tomu, aby dve súbežné žiadosti dostali rovnakú značku.
+
+Úplný zoznam je v sekcii 17 súboru [`definition.md`](definition.md).

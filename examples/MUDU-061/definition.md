@@ -4,7 +4,7 @@ process_id: MUDU-061
 catalogue_id: "061"
 catalogue_name: "Žiadosť o zápis lietadla do registra lietadiel"
 canonical_name: "Zápis lietadla do registra lietadiel Slovenskej republiky"
-definition_version: 0.1.2
+definition_version: 0.1.3
 definition_status: DRAFT
 authority_status: UNCONFIRMED
 source_selection: SELECTED
@@ -12,17 +12,30 @@ implementation_conformance: NONCONFORMANT
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: 2026-09-01
-supersedes: "MUDU-061@0.1.1"
+supersedes: "MUDU-061@0.1.2"
 related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 ---
 
 # MUDU-061 — Zápis lietadla do registra lietadiel Slovenskej republiky
 
-> **Public example:** normative public sources remain exactly cited. Private project and implementation evidence is described but not redistributed. This document remains `DRAFT` and `UNCONFIRMED`.
+> **Verejný pracovný príklad:** Verejné právne a oficiálne zdroje sú prepojené
+> priamo. Interné projektové podklady sú iba opísané, nie zverejnené. Dokument
+> zostáva `DRAFT / UNCONFIRMED` — vecný gestor ho ešte neschválil.
 
 > Dopravný úrad na žiadosť vlastníka zapíše oprávnené lietadlo do registra
 > lietadiel, pridelí mu registrovú značku, vydá osvedčenie o zápise a zápisom
 > mu vznikne štátna príslušnosť Slovenskej republiky.
+
+**Rýchly prehľad**
+
+| Otázka | Odpoveď |
+| --- | --- |
+| Kto proces spúšťa? | Vlastník lietadla alebo preukázaný zástupca. |
+| Čo úrad overuje? | Podmienky zápisu, údaje, prílohy, poplatok a povinnú kontrolu lietadla aj všetkých motorov v SIS. |
+| Aký je úspešný výsledok? | Lietadlo sa zapíše, získa štátnu príslušnosť SR a značku; úrad vydá osvedčenie a zverejní zákonnú časť registra. |
+| Čo sem nepatrí? | Predbežná značka je MUDU-060, neskoršia zmena MUDU-062 a výmaz MUDU-063. |
+| Čo ešte treba rozhodnúť alebo opraviť? | Reálne volanie SIS, právoplatnosť a poradie účinkov, nesprávne šablóny a ochranu jedinečnosti pri súbehu. |
+| Jednoduchý priebeh | [Otvoriť diagram procesu](graph.md) |
 
 ## 1. Identita a stav
 
@@ -139,7 +152,7 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | DOC-061-008 | Exportné osvedčenie o letovej spôsobilosti nie staršie ako 60 dní | CONDITIONAL | Listinne kópia; úradný preklad okrem češtiny alebo angličtiny; iba ak sa na lietadlo nevzťahuje určený rozsah nariadenia EÚ 2018/1139 | LAW | CONFIRMED | SRC-061-002 |
 | DOC-061-009 | Plná moc | CONDITIONAL | Forma spôsobilá preukázať zastúpenie | OFFICIAL_PROCEDURE | CONFIRMED | SRC-061-004, SRC-061-006 |
 | DOC-061-010 | Colné potvrdenie, vyhlásenie o súkromnom používaní, fotografie štítkov a doklad o zaplatení | CONDITIONAL | Podľa F468 | OFFICIAL_PROCEDURE | CONFLICT | SRC-061-002, SRC-061-007 |
-| DOC-061-011 | Osem nakonfigurovaných príloh MUDU pre ID61 | CONDITIONAL | Elektronicky, poštou alebo osobne podľa konfigurácie | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-002, SRC-061-014 |
+| DOC-061-011 | Osem nakonfigurovaných príloh MUDU pre ID 61 | CONDITIONAL | Elektronicky, poštou alebo osobne podľa konfigurácie | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-002, SRC-061-014 |
 | DOC-061-012 | Výpis z obchodného alebo živnostenského registra | NOT_APPLICABLE | Aktuálna stránka DÚ uvádza, že ho netreba prikladať; identita sa však musí preukázať zákonným spôsobom. | OFFICIAL_PROCEDURE | CONFIRMED | SRC-061-006 |
 
 ## 8. Poplatky, lehoty a časové pravidlá
@@ -156,7 +169,7 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | TIM-061-003 | Rozklad | 15 dní od oznámenia rozhodnutia, ak osobitný predpis neurčuje inak | Doručenie rozhodnutia | LAW | CONFIRMED | SRC-061-001, SRC-061-004 |
 | TIM-061-004 | Platnosť exportného osvedčenia | Najviac 60 dní staré | Deň podania žiadosti | LAW | CONFIRMED | SRC-061-002 |
 | TIM-061-005 | Zachovanie predbežnej značky | Predbežné pridelenie nestratí platnosť | Podanie MUDU-061 vlastníkom počas jedného roka od právoplatnosti MUDU-060 | LAW | CONFIRMED | SRC-061-001 |
-| TIM-061-006 | Aktuálne správoplatnenie výstupu | Konfigurácia používa režim 15 dní, ale automatický job je vypnutý a ukončenie sa vykonáva manuálne | Aktuálne spracovanie výstupu vo Fabasofte/backoffice | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-010, SRC-061-015, SRC-061-017 |
+| TIM-061-006 | Aktuálne správoplatnenie výstupu | Konfigurácia používa režim 15 dní, ale automatická úloha je vypnutá a ukončenie sa vykonáva manuálne | Aktuálne spracovanie výstupu vo Fabasofte a module Backoffice | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-010, SRC-061-015, SRC-061-017 |
 
 ## 9. Rozhodovacie pravidlá a invarianty
 
@@ -188,11 +201,11 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | STEP-061-007 | 7 | Vec pripravená na rozhodnutie | Dopravný úrad vydá rozhodnutie o zápise alebo negatívne rozhodnutie s náležitosťami správneho rozhodnutia. | ACT-061-006 | Výsledok dokazovania | Rozhodnutie oznámené | LAW | CONFIRMED | SRC-061-001, SRC-061-004 |
 | STEP-061-008 | 8 | Rozhodnutie o zápise je právoplatné | Dopravný úrad zapíše zákonné údaje, pridelí značku, vytvorí verejnú a neverejnú projekciu a vydá osvedčenie. | ACT-061-006 | RULE-061-008, RULE-061-009 a RULE-061-012 | Lietadlo zapísané a osvedčenie vydané | LAW | CONFIRMED | SRC-061-001 |
 | STEP-061-009 | 9 | Lietadlo zapísané | Dopravný úrad zverejní zákonný rozsah verejnej časti registra. | ACT-061-006 | REQ-061-011 | Verejný register aktualizovaný | LAW | CONFIRMED | SRC-061-001 |
-| STEP-061-010 | A1 | SIS hit | Dopravný úrad bezodkladne oznámi hit Policajnému zboru a zápis nevykoná. | ACT-061-006 | RULE-061-010 | Nezapísané; oznámené Policajnému zboru | LAW | CONFIRMED | SRC-061-001 |
+| STEP-061-010 | A1 | Jednoznačný nález v SIS | Dopravný úrad bezodkladne oznámi nález Policajnému zboru a zápis nevykoná. | ACT-061-006 | RULE-061-010 | Nezapísané; oznámené Policajnému zboru | LAW | CONFIRMED | SRC-061-001 |
 | STEP-061-011 | A2 | Rozhodnutie oznámené | Oprávnená osoba môže podať rozklad; právoplatnosť a vykonanie sa určia podľa správneho poriadku a osobitného zákona. | ACT-061-001 alebo ACT-061-004 | TIM-061-003 | Rozkladové konanie alebo právoplatné rozhodnutie | LAW | CONFIRMED | SRC-061-001, SRC-061-004 |
-| STEP-061-012 | I1 | Elektronická žiadosť odoslaná | Portál vytvorí XML a prílohy, ÚPVS/Fabasoft vytvorí záznam a backoffice ho prevezme s väzbou na spis a riešiteľa. | Systém CRDÚ a Fabasoft | Portálový kanál | Backoffice podanie | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-008, SRC-061-010, SRC-061-012 |
-| STEP-061-013 | I2 | Backoffice podanie | Konfigurácia spustí poplatok a CLK lustráciu; dnešná SIS vetva však nemá integračné volanie a nesmie byť použitá ako dôkaz STEP-061-005. | Systém CRDÚ | ID61 workflow | Technické podprocesy vytvorené | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-015, SRC-061-016 |
-| STEP-061-014 | I3 | Rozhodnutie pripravené | Backoffice generuje a odosiela výstup do Fabasoftu; registrové záznamy sa správoplatňujú podľa výstupového workflow, pričom automatický 15-dňový job je vypnutý. | ACT-061-009 a systém CRDÚ | Konfigurovaný výstup | Manuálne dokončenie alebo prerušenie/zastavenie | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-010, SRC-061-017 |
+| STEP-061-012 | I1 | Elektronická žiadosť odoslaná | Portál vytvorí XML a prílohy, ÚPVS/Fabasoft vytvorí záznam a modul Backoffice ho prevezme s väzbou na spis a riešiteľa. | Systém CRDÚ a Fabasoft | Portálový kanál | Podanie v module Backoffice | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-008, SRC-061-010, SRC-061-012 |
+| STEP-061-013 | I2 | Podanie v module Backoffice | Konfigurácia spustí poplatok a lustráciu CLK; dnešná vetva SIS však nemá integračné volanie a nesmie byť použitá ako dôkaz STEP-061-005. | Systém CRDÚ | Pracovný postup ID 61 | Technické podprocesy vytvorené | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-015, SRC-061-016 |
+| STEP-061-014 | I3 | Rozhodnutie pripravené | Modul Backoffice vytvorí a odošle výstup do Fabasoftu; registrové záznamy sa správoplatňujú podľa výstupného postupu, pričom automatická 15-dňová úloha je vypnutá. | ACT-061-009 a systém CRDÚ | Konfigurovaný výstup | Manuálne dokončenie alebo prerušenie/zastavenie | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-010, SRC-061-017 |
 
 ## 11. Výstupy, právne účinky a koncové stavy
 
@@ -220,7 +233,7 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | INT-061-003 | INTEGRATION | Platobný modul a centrálny systém poplatkov | Predpis, úhrada a stav správneho poplatku. | HIGH | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-003, SRC-061-013, SRC-061-015 |
 | INT-061-004 | INTEGRATION | Schengenský informačný systém cez CLK | Povinná kontrola lietadla a motorov pred zápisom. | CRITICAL | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-001, SRC-061-016 |
 | NOT-061-001 | NOTIFICATION | Policajný zbor | Bezodkladné oznámenie jednoznačného a nepochybného SIS hitu. | CRITICAL | LAW | CONFIRMED | SRC-061-001 |
-| INT-061-005 | INTEGRATION | Register lietadiel v backoffice a verejný portál | Uloženie aktuálneho záznamu a zverejnenie iba verejnej projekcie. | CRITICAL | CURRENT_IMPLEMENTATION | UNKNOWN | SRC-061-001, SRC-061-009, SRC-061-010 |
+| INT-061-005 | INTEGRATION | Register lietadiel v module Backoffice a verejný portál | Uloženie aktuálneho záznamu a zverejnenie iba verejnej projekcie. | CRITICAL | CURRENT_IMPLEMENTATION | UNKNOWN | SRC-061-001, SRC-061-009, SRC-061-010 |
 | INT-061-006 | INTEGRATION | Generovanie dokumentov | Rozhodnutie, osvedčenie, list právoplatnosti, nálepky, prerušenie a zastavenie. | HIGH | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-017 až SRC-061-023 |
 | NOT-061-002 | NOTIFICATION | Žiadateľ | Výzva na doplnenie, výzva na úhradu, oznámenie rozhodnutia a doručenie osvedčenia. | HIGH | OFFICIAL_PROCEDURE | UNKNOWN | SRC-061-003, SRC-061-004, SRC-061-010 |
 | NOT-061-003 | NOTIFICATION | Ministerstvo dopravy SR | Overenie alebo použitie povolenia výnimočného zápisu; technický integračný mechanizmus nie je doložený. | MEDIUM | LAW | UNKNOWN | SRC-061-001 |
@@ -234,13 +247,13 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | ALT-061-003 | Vlastník ani prevádzkovateľ nespĺňa § 25 ods. 3 a chýba povolenie ministerstva. | Zápis sa nevykoná. | Nezapísané | LAW | CONFIRMED | SRC-061-001 |
 | ALT-061-004 | Lietadlo je stále zapísané v cudzom registri alebo patrí do registra podľa § 45b. | Zápis sa nevykoná. | Nezapísané | LAW | CONFIRMED | SRC-061-001 |
 | ALT-061-005 | SIS kontrola jednoznačne a nepochybne potvrdí pátranie po lietadle alebo motore. | Zápis sa nevykoná a Policajný zbor sa bezodkladne informuje. | Nezapísané a oznámené PZ | LAW | CONFIRMED | SRC-061-001 |
-| ALT-061-006 | SIS/CLK nie je dostupné alebo nie je preukázané reálne odoslanie a odpoveď. | Zápis sa nesmie vykonať, kým nebude zákonná kontrola preukázateľne dokončená; retry, eskalácia a používateľský stav vyžadujú prijatý návrh. | Blokované pred zápisom | LAW | CONFIRMED | SRC-061-001, SRC-061-016 |
+| ALT-061-006 | SIS/CLK nie je dostupné alebo nie je preukázané reálne odoslanie a odpoveď. | Zápis sa nesmie vykonať, kým nebude zákonná kontrola preukázateľne dokončená; opakovanie, eskalácia a používateľský stav vyžadujú prijatý návrh. | Blokované pred zápisom | LAW | CONFIRMED | SRC-061-001, SRC-061-016 |
 | ALT-061-007 | Chýba podmienene povinné potvrdenie z cudzieho registra, prevádzkové oprávnenie, záložný doklad alebo exportné osvedčenie. | Úrad vyzve na presne príslušný dokument; nesmie automaticky požadovať navzájom sa vylučujúce zahraničné potvrdenia. | Čaká na doplnenie alebo nezapísané | LAW | CONFIRMED | SRC-061-002, SRC-061-004 |
 | ALT-061-008 | MTOW je presne 5 701 kg. | Systém ani referent nesmú konflikt sadzobníka a implementácie skryť; potrebné je autoritatívne určenie sadzby. | Konflikt poplatku pred rozhodnutím | LAW | CONFLICT | SRC-061-003, SRC-061-013 |
 | ALT-061-009 | Navrhovaná značka je neprípustná alebo už aktívne použitá. | Úrad vyžiada prípustnú značku alebo rozhodne bez vytvorenia duplicitného aktuálneho pridelenia. | Čaká na opravu alebo nezapísané | PROPOSAL | PROPOSED | SRC-061-002, SRC-061-009 |
 | ALT-061-010 | Podaný rozklad v lehote. | Vec sa nesmie prezentovať ako nezvratne právoplatne ukončená; postupuje sa podľa § 55 ods. 3 leteckého zákona a správneho poriadku. | Rozkladové konanie | LAW | CONFIRMED | SRC-061-001, SRC-061-004 |
 | ALT-061-011 | Prerušenie alebo zastavenie sa generuje aktuálnou všeobecnou šablónou. | Šablóna nesmie uvádzať, že predmetom MUDU-061 je iba predbežné pridelenie značky; výstup treba odmietnuť alebo opraviť pred použitím. | Výstup blokovaný ako vecne nesprávny | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-021, SRC-061-022 |
-| ALT-061-012 | Súbežné žiadosti sa týkajú rovnakého lietadla alebo značky. | Potrebné je atómovo zabrániť dvom aktuálnym zápisom a zachovať audit rozhodnutia. | Jeden konzistentný výsledok alebo explicitný konflikt | PROPOSAL | PROPOSED | SRC-061-009, SRC-061-011 |
+| ALT-061-012 | Súbežné žiadosti sa týkajú rovnakého lietadla alebo značky. | Potrebné je atómovo zabrániť dvom aktuálnym zápisom a zachovať auditnú stopu rozhodnutia. | Jeden konzistentný výsledok alebo explicitný konflikt | PROPOSAL | PROPOSED | SRC-061-009, SRC-061-011 |
 
 ## 14. Väzby na iné procesy a dopad zmien
 
@@ -251,12 +264,12 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | DEP-061-003 | OUT | MUDU-063 | SUCCESSOR | Výmaz ukončuje registráciu a vyžaduje samostatné podmienky a výstupy; MUDU-061 ho neobsahuje. | LAW | CONFIRMED | SRC-061-001, SRC-061-002, SRC-061-008 |
 | DEP-061-004 | OUT | MUDU-091 | OUT_OF_SCOPE | Mód S alebo ELT je samostatná služba so zdieľaným lietadlom a značkou; úspech MUDU-061 nie je dôkazom pridelenia kódu. | OBSERVATION | CONFIRMED | SRC-061-008, SRC-061-025 |
 | DEP-061-005 | BOTH | EA Vehicle 9482 a Aircraft 9923 | SHARED_ENTITY | Zmenu identity, technických údajov, registrového stavu alebo dátumov treba preveriť proti MUDU-051 až MUDU-063, MUDU-065, MUDU-066 a MUDU-091 podľa konkrétneho atribútu. | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-011, SRC-061-025 |
-| DEP-061-006 | BOTH | EA Engine 9925 a Propeller 9929 | SHARED_ENTITY | Zmeny identity súčastí ovplyvňujú registračné, zmenové, výmazové, technické a SIS väzby; v MUDU-061 sú v rozsahu iba registračné, záložné a SIS účinky. | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-011, SRC-061-025 |
+| DEP-061-006 | BOTH | EA `Engine` 9925 a `Propeller` 9929 | SHARED_ENTITY | Zmeny identity súčastí ovplyvňujú registračné, zmenové, výmazové, technické a SIS väzby; v MUDU-061 sú v rozsahu iba registračné, záložné a SIS účinky. | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-011, SRC-061-025 |
 | DEP-061-007 | BOTH | EA Owner 13387, Operator 13406 a Lien 16820 | SHARED_ENTITY | Role sa nesmú zlúčiť; rovnaké entity zdieľajú MUDU-060/061/062/063, ale oprávnenia sú procesovo rozdielne. | CURRENT_IMPLEMENTATION | CONFIRMED | SRC-061-001, SRC-061-011, SRC-061-025 |
 | DEP-061-008 | BOTH | EA RegistrationMark 20919 a RegistrationMarkInTime 20926 | SHARED_ENTITY | Značka spája predbežné pridelenie, zápis, zmenu a výmaz; verzovanie musí zachovať časový životný cyklus a zabrániť súbežnému aktívnemu použitiu. | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-011, SRC-061-025 |
 | DEP-061-009 | BOTH | CLK/SIS | SHARED_INTEGRATION | Rovnaká zákonná kontrola patrí MUDU-061 a MUDU-062; MUDU-060 ju zákon nevyžaduje a MUDU-063 ju nemá nakonfigurovanú. | LAW | CONFIRMED | SRC-061-001, SRC-061-016 |
 | DEP-061-010 | IN | MUDU-070 a MUDU-075 | OUT_OF_SCOPE | Grafové odkazy iba používajú kontext registrovaného lietadla; nevytvárajú podmienku ani vstup MUDU-061. | OBSERVATION | CONFIRMED | SRC-061-025 |
-| DEP-061-011 | BOTH | Šesť výstupov ID61 | SHARED_OUTPUT | Rozhodnutie, osvedčenie, list, nálepky, prerušenie a zastavenie musia byť zviazané s rovnakou definíciou a nesmú používať text MUDU-060. | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-017 až SRC-061-023 |
+| DEP-061-011 | BOTH | Šesť výstupov ID 61 | SHARED_OUTPUT | Rozhodnutie, osvedčenie, list, nálepky, prerušenie a zastavenie musia byť zviazané s rovnakou definíciou a nesmú používať text MUDU-060. | CURRENT_IMPLEMENTATION | CONFLICT | SRC-061-017 až SRC-061-023 |
 
 ## 15. Akceptačné scenáre
 
@@ -275,34 +288,34 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | AC-061-011 | Žiadosť je elektronická, ale niektorá príloha nie je v elektronickej podobe. | Uplatňuje sa zníženie poplatku. | Znížená sadzba sa neuplatní iba na základe elektronického formulára. | FEE-061-005, PRE-061-009 | DRAFT |
 | AC-061-012 | Úspešné rozhodnutie je vygenerované, ale nebola preukázaná právoplatnosť. | Systém vytvorí register alebo osvedčenie. | Výstupy sa nesmú prezentovať ako účinný zápis iba na základe času vytvorenia dokumentu. | RULE-061-012, STEP-061-008, OUT-061-001 | DRAFT |
 | AC-061-013 | Pre MUDU-061 sa vyberie aktuálna šablóna prerušenia alebo zastavenia. | Dokument sa pred odoslaním validuje. | Text o predbežnom pridelení podľa § 26 ods. 4 je označený ako vecne nesprávny a dokument sa neodošle bez opravy. | ALT-061-011, DEP-061-011 | DRAFT |
-| AC-061-014 | Dve súbežné podania požadujú tú istú značku alebo identitu lietadla. | Obe sa pokúsia dokončiť zápis. | Vznikne najviac jeden aktuálny zápis; druhé podanie má explicitný konflikt a audit. | RULE-061-006, ALT-061-012 | DRAFT |
+| AC-061-014 | Dve súbežné podania požadujú tú istú značku alebo identitu lietadla. | Obe sa pokúsia dokončiť zápis. | Vznikne najviac jeden aktuálny zápis; druhé podanie má výslovný konflikt a auditnú stopu. | RULE-061-006, ALT-061-012 | DRAFT |
 | AC-061-015 | Po zápise sa zmenia údaje alebo sa žiada výmaz či Mode S/ELT. | Používateľ pokračuje. | Použije samostatne MUDU-062, MUDU-063 alebo MUDU-091; MUDU-061 sa nerecykluje ako rodinný proces. | SCP-061-006, SCP-061-008, DEP-061-002 až DEP-061-004 | DRAFT |
 
 ## 16. Mapovanie na EA, Petriflow a kód
 
 | ID | Vrstva implementácie | Artefakt | Presná väzba | Stav | Zdroje |
 | --- | --- | --- | --- | --- | --- |
-| MAP-061-001 | Katalóg | katalog_sluzieb.csv ID61 | `portal_aircraft_new_aircraft_complete_form`, XML `vehicle`, elektronická aktívna služba, účel zápisu do registra. | CONFIRMED | SRC-061-008 |
-| MAP-061-002 | Petriflow | vehicle.xml | Transition `portal_aircraft_new_aircraft_complete_form`; kompozícia Vehicle na Aircraft part1/part2, Owner, Operator, Lien a RegistrationMark. | CONFIRMED | SRC-061-012, SRC-061-009 |
-| MAP-061-003 | Petriflow | aircraft.xml part 1 | Povinné typ, model, rok, výrobca, výrobné číslo, MTOW, počet osôb a základné letisko; predchádzajúca značka a skutočné umiestnenie majú odlišnú povinnosť. | CONFLICT | SRC-061-013 |
-| MAP-061-004 | Petriflow | aircraft.xml part 2 | Opakovateľné motory a vrtule a ich údaje; presná kompozícia na engine.xml a propeller.xml. | CONFIRMED | SRC-061-013, SRC-061-009 |
-| MAP-061-005 | Petriflow/Groovy + poplatková konfigurácia | MTOW fee action a portal_spravne_poplatky.csv | aircraft.xml používa3034 pri MTOW do2750,3035 pri2751 až5700 a3036 od5701;portal CSV však viaže ID61 na3034,200,3036. | CONFLICT | SRC-061-003, SRC-061-013, SRC-061-026 |
-| MAP-061-006 | Konfigurácia | katalog_workflow.csv ID61 | Workflow `Poplatok + Lustrácie`. | CONFIRMED | SRC-061-015 |
-| MAP-061-007 | Konfigurácia | lustracie_a_sluzby.csv ID61 | Lustrácia `ANO`, CLK `X`. | CONFIRMED | SRC-061-016 |
-| MAP-061-008 | Konfigurácia | prilohy_formularov.csv ID61 | Osem riadkov príloh; vlastníctvo, frekvencie a poistenie sú označené povinné, ostatné nepovinné bez úplnej podmienkovej logiky vyhlášky. | CONFLICT | SRC-061-014 |
+| MAP-061-001 | Katalóg | `katalog_sluzieb.csv`, ID 61 | `portal_aircraft_new_aircraft_complete_form`, XML `vehicle`, elektronická aktívna služba, účel zápisu do registra. | CONFIRMED | SRC-061-008 |
+| MAP-061-002 | Petriflow | `vehicle.xml` | Prechod `portal_aircraft_new_aircraft_complete_form`; kompozícia `Vehicle` na `Aircraft` časti 1 a 2, `Owner`, `Operator`, `Lien` a `RegistrationMark`. | CONFIRMED | SRC-061-012, SRC-061-009 |
+| MAP-061-003 | Petriflow | `aircraft.xml` časť 1 | Povinné typ, model, rok, výrobca, výrobné číslo, MTOW, počet osôb a základné letisko; predchádzajúca značka a skutočné umiestnenie majú odlišnú povinnosť. | CONFLICT | SRC-061-013 |
+| MAP-061-004 | Petriflow | `aircraft.xml` časť 2 | Opakovateľné motory a vrtule a ich údaje; presná kompozícia na `engine.xml` a `propeller.xml`. | CONFIRMED | SRC-061-013, SRC-061-009 |
+| MAP-061-005 | Petriflow/Groovy a poplatková konfigurácia | Výpočet poplatku podľa MTOW a `portal_spravne_poplatky.csv` | `aircraft.xml` používa kód 3034 pri MTOW do 2 750 kg, 3035 pri 2 751 až 5 700 kg a 3036 od 5 701 kg; CSV však viaže ID 61 na kódy 3034, 200 a 3036. | CONFLICT | SRC-061-003, SRC-061-013, SRC-061-026 |
+| MAP-061-006 | Konfigurácia | `katalog_workflow.csv`, ID 61 | Pracovný postup `Poplatok + Lustrácie`. | CONFIRMED | SRC-061-015 |
+| MAP-061-007 | Konfigurácia | `lustracie_a_sluzby.csv`, ID 61 | Lustrácia `ANO`, CLK `X`. | CONFIRMED | SRC-061-016 |
+| MAP-061-008 | Konfigurácia | `prilohy_formularov.csv`, ID 61 | Osem riadkov príloh; vlastníctvo, frekvencie a poistenie sú označené ako povinné, ostatné ako nepovinné bez úplnej podmienkovej logiky vyhlášky. | CONFLICT | SRC-061-014 |
 | MAP-061-009 | EA | Vehicle 9482 a Aircraft 9923 | Vehicle drží registračné dátumy, značku, číslo, záložné právo a dočasnú značku; Aircraft drží technické a vzťahové údaje. | CONFIRMED | SRC-061-011 |
-| MAP-061-010 | EA | Engine 9925, Propeller 9929, RegistrationMark 20919 a RegistrationMarkInTime 20926 | Súčasti a časový životný cyklus značky zdieľajú MUDU-060/061/062/063 a ďalšie technické služby. | CONFLICT | SRC-061-011, SRC-061-025 |
+| MAP-061-010 | EA | `Engine` 9925, `Propeller` 9929, `RegistrationMark` 20919 a `RegistrationMarkInTime` 20926 | Súčasti a časový životný cyklus značky zdieľajú MUDU-060/061/062/063 a ďalšie technické služby. | CONFLICT | SRC-061-011, SRC-061-025 |
 | MAP-061-011 | EA | Owner 13387, Operator 13406 a Lien 16820 | Samostatné role a vzťahy k lietadlu; ich zlúčenie by porušilo § 25 a § 26. | CONFIRMED | SRC-061-001, SRC-061-011 |
 | MAP-061-012 | EA/CLK | AircraftEngineResult 40113 | Výsledkový model kontroly motora; existencia modelu nie je dôkazom vykonanej kontroly. | CONFLICT | SRC-061-011, SRC-061-016 |
-| MAP-061-013 | Výstupná konfigurácia | word_templates.json ID61 | Šesť výstupov: rozhodnutie, osvedčenie, list právoplatnosti, nálepky, prerušenie a zastavenie. | CONFIRMED | SRC-061-017 |
+| MAP-061-013 | Výstupná konfigurácia | `word_templates.json`, ID 61 | Šesť výstupov: rozhodnutie, osvedčenie, list právoplatnosti, nálepky, prerušenie a zastavenie. | CONFIRMED | SRC-061-017 |
 | MAP-061-014 | Výstupná šablóna | Rozhodnutie_Zapis_do_RL.docx | Vecne opisuje zápis a osvedčenie po právoplatnosti, ale obsahuje vzorový poplatok 100 EUR a dátum 03.12.2024. | CONFLICT | SRC-061-018 |
 | MAP-061-015 | Výstupná šablóna | Osvedcenie_o_zapise_do_RLSR.docx | Osvedčenie o zápise s registračnými údajmi. | CONFIRMED | SRC-061-019 |
 | MAP-061-016 | Výstupná šablóna | List_pravoplatnost_zapis_do_RL.docx | List právoplatnosti zápisu. | CONFIRMED | SRC-061-020 |
-| MAP-061-017 | Výstupná šablóna | Prerusenie_konania_DCL.docx | Konfigurovaná pre ID61, ale text označuje konanie o pridelenie značky podľa § 26 ods. 4. | CONFLICT | SRC-061-021 |
-| MAP-061-018 | Výstupná šablóna | Zastavenie_konania_DCL.docx | Konfigurovaná pre ID61, ale text označuje zastavenie konania o pridelenie značky. | CONFLICT | SRC-061-022 |
+| MAP-061-017 | Výstupná šablóna | `Prerusenie_konania_DCL.docx` | Konfigurovaná pre ID 61, ale text označuje konanie o pridelenie značky podľa § 26 ods. 4. | CONFLICT | SRC-061-021 |
+| MAP-061-018 | Výstupná šablóna | `Zastavenie_konania_DCL.docx` | Konfigurovaná pre ID 61, ale text označuje zastavenie konania o pridelenie značky. | CONFLICT | SRC-061-022 |
 | MAP-061-019 | Výstupná šablóna | Nalepky.docx | Technická šablóna nálepiek; normatívny účel nebol samostatne potvrdený. | UNKNOWN | SRC-061-023 |
-| MAP-061-020 | Integrácia | knowledge-transfer submission/output flow | Elektronické a fyzické podanie cez Fabasoft, prílohy, caseRef/taskRef, výstupy a manuálne správoplatnenie pri vypnutom 15-dňovom jobe. | CONFIRMED | SRC-061-010 |
-| MAP-061-021 | Legacy register | MDB schema | Schéma rozlišuje pridelenie, zápis, zmenu a výmaz; tento increment nepreukazuje úplnosť alebo aktuálnosť riadkov historickej databázy. | UNKNOWN | SRC-061-009, SRC-061-024 |
+| MAP-061-020 | Integrácia | Tok podania a výstupov podľa dokumentu o odovzdaní znalostí | Elektronické a fyzické podanie cez Fabasoft, prílohy, `caseRef`, `taskRef`, výstupy a manuálne správoplatnenie pri vypnutej 15-dňovej úlohe. | CONFIRMED | SRC-061-010 |
+| MAP-061-021 | Starší register | Schéma MDB | Schéma rozlišuje pridelenie, zápis, zmenu a výmaz; tento návrh nepreukazuje úplnosť ani aktuálnosť riadkov historickej databázy. | UNKNOWN | SRC-061-009, SRC-061-024 |
 | MAP-061-022 | SharePoint | Vzor žiadosti, rozhodnutia, osvedčenia, listu právoplatnosti a rozšírenia registra | Historický projektový kontext použitý na porovnanie, nie na prebitie aktuálneho zákona a vyhlášky. | CONFIRMED | SRC-061-024 |
 
 ## 17. Medzery, konflikty a otvorené rozhodnutia
@@ -313,26 +326,27 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | GAP-061-002 | SOURCE_CONFLICT | Stránka DÚ odkazuje na vyhlášku č. 274/2004, hoci platná vyhláška je č. 274/2024 Z. z. | Opraviť oficiálnu stránku a potvrdiť aktuálny zdroj. | Dopravný úrad | CONFLICT | SRC-061-002, SRC-061-005 |
 | GAP-061-003 | SOURCE_CONFLICT | Formulárová stránka DÚ zjednodušene vyžaduje originály alebo overené kópie okrem dvoch potvrdení, kým § 5 vyhlášky rozlišuje viac kategórií a elektronickú konverziu. | Zosúladiť verejnú inštrukciu s § 5 a odstrániť nejednoznačnosť. | Dopravný úrad + legislatíva | CONFLICT | SRC-061-002, SRC-061-006 |
 | GAP-061-004 | SOURCE_CONFLICT | Položka 92 písm. a) uvádza 1 000 EUR pri MTOW nad 5 701 kg, takže presných 5 701 kg nie je textovo pokrytých; kód používa hranicu od 5 701 kg. | Autoritatívne určiť sadzbu presne pre 5 701 kg a následne zjednotiť zákonnú interpretáciu, konfiguráciu a testy. | Legislatíva + vecný gestor | CONFLICT | SRC-061-003, SRC-061-013 |
-| GAP-061-005 | IMPLEMENTATION_GAP | CLK/SIS branch nemá integračné volanie, ale spoločný koniec nastaví čas a stav odoslania. | Realizovať preukázateľnú kontrolu lietadla a každého motora, výsledok, hit vetvu a oznámenie PZ; falošný stav odoslania nesmie odomknúť zápis. | Netgrif + vecný gestor | CONFLICT | SRC-061-001, SRC-061-016 |
-| GAP-061-006 | IMPLEMENTATION_GAP | Šablóny prerušenia a zastavenia ID61 opisujú MUDU-060 a § 26 ods. 4. | Vytvoriť a zviazať procesovo správne šablóny MUDU-061; pridať obsahovú validáciu. | Netgrif + vecný gestor | CONFLICT | SRC-061-021, SRC-061-022 |
+| GAP-061-005 | IMPLEMENTATION_GAP | Vetva CLK/SIS nemá integračné volanie, ale spoločný koniec nastaví čas a stav odoslania. | Realizovať preukázateľnú kontrolu lietadla a každého motora, výsledok, vetvu pre nález a oznámenie Policajnému zboru; falošný stav odoslania nesmie odomknúť zápis. | Netgrif + vecný gestor | CONFLICT | SRC-061-001, SRC-061-016 |
+| GAP-061-006 | IMPLEMENTATION_GAP | Šablóny prerušenia a zastavenia ID 61 opisujú MUDU-060 a § 26 ods. 4. | Vytvoriť a zviazať procesovo správne šablóny MUDU-061; pridať obsahovú kontrolu. | Netgrif + vecný gestor | CONFLICT | SRC-061-021, SRC-061-022 |
 | GAP-061-007 | IMPLEMENTATION_GAP | Rozhodnutie o zápise obsahuje vzorový dátum a príklad poplatku 100 EUR, ktorý nezodpovedá všetkým hmotnostným pásmam. | Odstrániť konštanty a viazať dátum aj poplatok na overené údaje konkrétneho podania. | Netgrif | CONFLICT | SRC-061-018 |
-| GAP-061-008 | IMPLEMENTATION_GAP | Automatický 15-dňový job je vypnutý a manuálne dokončenie nie je v definícii zviazané s doručením, rozkladom a skutočnou právoplatnosťou. | Definovať a implementovať právoplatnostný stavový automat s dôkazom doručenia a opravného prostriedku. | Vecný gestor + Netgrif | CONFLICT | SRC-061-004, SRC-061-010, SRC-061-015 |
+| GAP-061-008 | IMPLEMENTATION_GAP | Automatická 15-dňová úloha je vypnutá a manuálne dokončenie nie je v definícii zviazané s doručením, rozkladom a skutočnou právoplatnosťou. | Definovať a implementovať stavový automat právoplatnosti s dôkazom doručenia a opravného prostriedku. | Vecný gestor + Netgrif | CONFLICT | SRC-061-004, SRC-061-010, SRC-061-015 |
 | GAP-061-009 | IMPLEMENTATION_GAP | Dočasná značka je v EA zachytená ako Vehicle flag a starší model ju klonoval pri Aircraft; nie je dokázaná jedna autoritatívna časová reprezentácia. | Prijať model predbežnej značky, jej rezervácie, prechodu do zápisu, expirácie a súbehu MUDU-060/061. | Vecný gestor + Netgrif | CONFLICT | SRC-061-011, SRC-061-025 |
-| GAP-061-010 | INTENT_QUESTION | Presné interné roly referenta, schvaľovateľa, podpisujúcej osoby, notifikácie a lehoty na doplnenie nie sú zviazané s prijatým postupom. | Doplniť alebo prijať procesnú autoritu bez preberania rolí iba z aktuálneho workflow. | Vecný gestor | UNKNOWN | SRC-061-004, SRC-061-009, SRC-061-010 |
-| GAP-061-011 | IMPLEMENTATION_GAP | Atómová jedinečnosť lietadla a registrovej značky proti súbežným podaniam nebola preukázaná. | Definovať kľúče identity, okamih rezervácie/zápisu, konflikt, rollback a audit. | Vecný gestor + Netgrif | UNKNOWN | SRC-061-009, SRC-061-011 |
-| GAP-061-012 | EVIDENCE_GAP | Nebol vykonaný aktuálny end-to-end beh portál → Fabasoft/FBB → backoffice → SIS → rozhodnutie → právoplatnosť → register → osvedčenie a verejná projekcia. | Po akceptácii definície vytvoriť fixture, mocky tretích strán, formálne invarianty a Playwright/API/dátové dôkazy pre presne túto verziu. | Netgrif + analytik | UNKNOWN | SRC-061-009, SRC-061-010 |
-| GAP-061-013 | IMPLEMENTATION_GAP | aircraft.xml vyberá pre stredné MTOW pásmo PEP kód3035,ale portal_spravne_poplatky.csv viaže ID61 na kód200. | Autoritatívne určiť správny kód a zosúladiť XML,CSV,PEP a testy bez tichej substitúcie. | Netgrif + prevádzkovateľ PEP | CONFLICT | SRC-061-013, SRC-061-026 |
+| GAP-061-010 | INTENT_QUESTION | Presné interné roly referenta, schvaľovateľa, podpisujúcej osoby, notifikácie a lehoty na doplnenie nie sú zviazané s prijatým postupom. | Doplniť alebo prijať oprávnenia bez preberania rolí iba z aktuálneho technického postupu. | Vecný gestor | UNKNOWN | SRC-061-004, SRC-061-009, SRC-061-010 |
+| GAP-061-011 | IMPLEMENTATION_GAP | Atómová jedinečnosť lietadla a registrovej značky proti súbežným podaniam nebola preukázaná. | Definovať kľúče identity, okamih rezervácie alebo zápisu, riešenie konfliktu, návrat transakcie a auditnú stopu. | Vecný gestor + Netgrif | UNKNOWN | SRC-061-009, SRC-061-011 |
+| GAP-061-012 | EVIDENCE_GAP | Nebol vykonaný aktuálny úplný beh portál → Fabasoft/FBB → Backoffice → SIS → rozhodnutie → právoplatnosť → register → osvedčenie → verejná projekcia. | Po prijatí definície vytvoriť testovacie vstupy, náhrady tretích strán, formálne invarianty a dôkazy Playwright/API/dáta pre presne túto verziu. | Netgrif + analytik | UNKNOWN | SRC-061-009, SRC-061-010 |
+| GAP-061-013 | IMPLEMENTATION_GAP | `aircraft.xml` vyberá pre stredné pásmo MTOW kód PEP 3035, ale `portal_spravne_poplatky.csv` viaže ID 61 na kód 200. | Oprávnená osoba musí určiť správny kód a zosúladiť XML, CSV, PEP a testy bez tichej náhrady. | Netgrif + prevádzkovateľ PEP | CONFLICT | SRC-061-013, SRC-061-026 |
 | Q-061-001 | INTENT_QUESTION | Je model lietadla a skutočné umiestnenie povinným alebo voliteľným biznis údajom nad rámec vyhlášky, alebo iba technickou položkou? | Prijať význam, kardinalitu, verejnosť a validačné pravidlo, alebo údaje odstrániť. | Vecný gestor | UNKNOWN | SRC-061-002, SRC-061-007, SRC-061-013 |
 | Q-061-002 | INTENT_QUESTION | Aký presný právny/prevádzkový účel majú nálepky a kedy sa vydávajú? | Zviazať ich s prijatým účelom a výstupovým stavom alebo ich vyradiť. | Vecný gestor | UNKNOWN | SRC-061-017, SRC-061-023 |
-| Q-061-003 | EVIDENCE_GAP | Vyriešené vo verzii 0.1.2: MUDU-063 je manuálne definované a štvorprocesová kontrola potvrdila oddelenie zápisu, zmeny a výmazu, no-SIS hranicu výmazu, zachovanie histórie a explicitné spoločné časové medzery. | Bez ďalšieho rozhodnutia; kontrolu obnoviť pri zmene ktoréhokoľvek MUDU-060 až MUDU-063. | Sémantický autor | CONFIRMED | SRC-061-027 |
+| Q-061-003 | EVIDENCE_GAP | Vyriešené vo verzii 0.1.2: MUDU-063 je manuálne definované a kontrola štyroch procesov potvrdila oddelenie zápisu, zmeny a výmazu, hranicu výmazu bez SIS, zachovanie histórie a spoločné časové medzery. | Bez ďalšieho rozhodnutia; kontrolu obnoviť pri zmene ktoréhokoľvek MUDU-060 až MUDU-063. | Sémantický autor | CONFIRMED | SRC-061-027 |
 
 ## 18. Schválenie a história zmien
 
 | Verzia | Dátum | Zmena | Autorita | Stav |
 | --- | --- | --- | --- | --- |
 | 0.1.0 | 2026-09-01 | Prvý manuálny zdrojovo uzavretý návrh MUDU-061; oddelené právo, oficiálny postup, historické projektové zdroje, EA, Petriflow, konfigurácia, výstupy a explicitné konflikty; skontrolovaná hranica MUDU-060/062/063/091. | UNCONFIRMED | DRAFT |
-| 0.1.1 | 2026-09-01 | Krížová kontrola pri MUDU-062 odhalila rozpor PEP kódu3035 versus CSV200 a uzavrela recipročnú hranicu MUDU-061/062;MUDU-063 zostáva pending. | UNCONFIRMED | DRAFT |
-| 0.1.2 | 2026-09-01 | MUDU-063 uzavrelo prvý štvorprocesový fixed point: zápis vytvára aktuálnu registráciu, MUDU-062 ju mení a MUDU-063 ju právoplatne ukončuje pri zachovaní histórie; otvorené implementačné konflikty ostávajú explicitné. | UNCONFIRMED | DRAFT |
+| 0.1.1 | 2026-09-01 | Krížová kontrola pri MUDU-062 odhalila rozpor medzi kódom PEP 3035 a kódom CSV 200 a uzavrela vzájomnú hranicu MUDU-061/062; MUDU-063 ešte nebolo spracované. | UNCONFIRMED | DRAFT |
+| 0.1.2 | 2026-09-01 | Kontrola štyroch procesov vytvorila prvý vzájomne konzistentný stav: MUDU-061 vytvára aktuálny zápis, MUDU-062 ho mení a MUDU-063 ho právoplatne ukončuje pri zachovaní histórie; otvorené implementačné konflikty zostávajú výslovné. | UNCONFIRMED | DRAFT |
+| 0.1.3 | 2026-09-01 | Doplnený ľudský rýchly prehľad a jazykové spresnenia bez zmeny vecných pravidiel procesu. | UNCONFIRMED | DRAFT |
 
 ## 19. Register zdrojov
 
@@ -340,28 +354,28 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | --- | --- | --- | --- | --- | --- |
 | SRC-061-001 | LAW | Zákon č. 143/1998 Z. z., časová verzia | https://static.slov-lex.sk/pdf/SK/ZZ/1998/143/ZZ_1998_143_20260101.pdf | § 25; § 26 ods. 1-15; § 55 | účinné od 2026-01-01 |
 | SRC-061-002 | LAW | Vyhláška č. 274/2024 Z. z. | https://static.slov-lex.sk/static/SK/ZZ/2024/274/20241115.html | § 1; § 5-7; úplný text § 1-8 | účinné od 2024-11-15; zachytené 2026-08-31 |
-| SRC-061-003 | LAW | Zákon č. 145/1995 Z. z., časová verzia | https://static.slov-lex.sk/static/SK/ZZ/1995/145/20260901.html | § 6 ods. 2; § 8-9; sadzobník položka 92 písm. a) | účinné od 2026-09-01; raw HTML zachytené 2026-09-01 |
+| SRC-061-003 | LAW | Zákon č. 145/1995 Z. z., časová verzia | https://static.slov-lex.sk/static/SK/ZZ/1995/145/20260901.html | § 6 ods. 2; § 8 až 9; sadzobník, položka 92 písm. a) | účinné od 2026-09-01; text HTML zachytený 2026-09-01 |
 | SRC-061-004 | LAW | Zákon č. 71/1967 Zb., časová verzia | https://static.slov-lex.sk/pdf/SK/ZZ/1967/71/ZZ_1967_71_20180901.pdf | § 16-19; § 27-30; § 46-49; § 54-61 | účinné od 2018-09-01; história skontrolovaná 2026-08-31 |
 | SRC-061-005 | OFFICIAL_PROCEDURE | DÚ — Register lietadiel SR | https://letectvo.nsat.sk/letova-sposobilost/register-lietadiel-slovenskej-republiky/ | verejný opis registra a podmienok | pozorované 2026-08-31 |
 | SRC-061-006 | OFFICIAL_PROCEDURE | DÚ — Formuláre registra lietadiel | https://letectvo.nsat.sk/letova-sposobilost/register-lietadiel-slovenskej-republiky/formulare/ | žiadateľ, zástupca a pravidlá príloh | pozorované 2026-08-31 |
 | SRC-061-007 | OFFICIAL_FORM | DÚ F468-B/v1/OSL | https://letectvo.nsat.sk/wp-content/uploads/sites/2/2023/03/F468_B_v1_Z%C3%81PIS-LIETADLA-DO-RL_FINAL.pdf | všetkých 8 strán | aktuálne prepojené DÚ; dokument z 2023; pozorované 2026-08-31 |
-| SRC-061-008 | CONFIGURATION | Katalóg služieb IS CRDÚ | not published in this repository | riadok ID61 a susedné ID60/62/63/91 | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-009 | CONFIGURATION | Aircraft registration EA/code context v2 | not published in this repository | ID60-63, EA14/108/13, CSV, XML, SharePoint, outputs a CLK | zachytené 2026-08-31;private/project evidence reviewed internally;not redistributed |
-| SRC-061-010 | KNOWLEDGE_TRANSFER | MUDU knowledge transfer | not published in this repository | elektronické/fyzické podania, Fabasoft, kompozícia, prílohy, výstupy, správoplatnenie a CLK | lokálny zdroj prečítaný 2026-09-01;private/project evidence reviewed internally;not redistributed |
-| SRC-061-011 | EA | EA objects, attributes and relations for MUDU-061 | not published in this repository | 14 objektov, 108 atribútov, 13 vzťahov | offline snapshot 2026-08-20; výber 2026-09-01;private/project evidence reviewed internally;not redistributed |
-| SRC-061-012 | PETRIFLOW | vehicle.xml | not published in this repository | transition portal_aircraft_new_aircraft_complete_form a kompozícia | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-013 | PETRIFLOW | aircraft.xml | not published in this repository | transitions part_1 a part_2; polia a fee actions 3034-3036 | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-014 | CONFIGURATION | prilohy_formularov.csv | not published in this repository | osem riadkov ID61 | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-015 | CONFIGURATION | katalog_workflow.csv | not published in this repository | riadok ID61 Poplatok + Lustrácie | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-016 | CONFIGURATION | lustracie_a_sluzby.csv a CLK Petriflow | not published in this repository | ID61 CLK; SIS branch a spoločný koniec v source packet | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-017 | CONFIGURATION | word_templates.json | not published in this repository | šesť výstupov ID61 | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-018 | OUTPUT_TEMPLATE | Rozhodnutie_Zapis_do_RL.docx | not published in this repository | celý dokument | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-019 | OUTPUT_TEMPLATE | Osvedcenie_o_zapise_do_RLSR.docx | not published in this repository | celý dokument | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-020 | OUTPUT_TEMPLATE | List_pravoplatnost_zapis_do_RL.docx | not published in this repository | celý dokument | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-021 | OUTPUT_TEMPLATE | Prerusenie_konania_DCL.docx | not published in this repository | celý dokument | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-022 | OUTPUT_TEMPLATE | Zastavenie_konania_DCL.docx | not published in this repository | celý dokument | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-023 | OUTPUT_TEMPLATE | Nalepky.docx | not published in this repository | celý dokument | zachytená lokálna revízia;private/project evidence reviewed internally;not redistributed |
-| SRC-061-024 | SHAREPOINT | Aircraft registration source set | not published in this repository | žiadosť, vzor rozhodnutia, osvedčenie, list právoplatnosti, rozšírenie registra a schéma databázy | zachytené 2026-08-31;private/project evidence reviewed internally;not redistributed |
-| SRC-061-025 | SOURCE_DRAFT | MUDU-061 graph-neighbourhood dossier | not published in this repository | 53 priamych kontextov a priami konzumenti; navigácia, nie autorita | vytvorené a manuálne skontrolované 2026-09-01;private/project evidence reviewed internally;not redistributed |
-| SRC-061-026 | CONFIGURATION | portal_spravne_poplatky.csv | not published in this repository | ID61 rows3034,200,3036;connected MUDU-062 source review | zachytená lokálna revízia;reviewed2026-09-01;private/project evidence reviewed internally;not redistributed |
-| SRC-061-027 | SOURCE_DRAFT | MUDU-063 process definition 0.1.0 DRAFT | not published in this repository | všetkých19 sekcií;recipročná hranica registra | manuálne skontrolované2026-09-01;UNCONFIRMED;private/project evidence reviewed internally;not redistributed |
+| SRC-061-008 | CONFIGURATION | Katalóg služieb IS CRDÚ | nezverejnené v tomto repozitári | riadok ID 61 a susedné ID 60/62/63/91 | zachytená lokálna revízia |
+| SRC-061-009 | CONFIGURATION | Kontext registra lietadiel v EA a kóde v2 | nezverejnené v tomto repozitári | ID 60 až 63, EA, CSV, XML, SharePoint, výstupy a CLK | zachytené 2026-08-31 |
+| SRC-061-010 | KNOWLEDGE_TRANSFER | Odovzdanie znalostí MUDU | nezverejnené v tomto repozitári | elektronické a fyzické podania, Fabasoft, kompozícia, prílohy, výstupy, správoplatnenie a CLK | lokálny zdroj prečítaný 2026-09-01 |
+| SRC-061-011 | EA | Objekty, atribúty a vzťahy EA pre MUDU-061 | nezverejnené v tomto repozitári | 14 objektov, 108 atribútov, 13 vzťahov | offline snímka 2026-08-20; výber 2026-09-01 |
+| SRC-061-012 | PETRIFLOW | `vehicle.xml` | nezverejnené v tomto repozitári | prechod `portal_aircraft_new_aircraft_complete_form` a kompozícia | zachytená lokálna revízia |
+| SRC-061-013 | PETRIFLOW | `aircraft.xml` | nezverejnené v tomto repozitári | prechody častí 1 a 2; polia a poplatkové akcie 3034 až 3036 | zachytená lokálna revízia |
+| SRC-061-014 | CONFIGURATION | `prilohy_formularov.csv` | nezverejnené v tomto repozitári | osem riadkov ID 61 | zachytená lokálna revízia |
+| SRC-061-015 | CONFIGURATION | `katalog_workflow.csv` | nezverejnené v tomto repozitári | riadok ID 61, `Poplatok + Lustrácie` | zachytená lokálna revízia |
+| SRC-061-016 | CONFIGURATION | `lustracie_a_sluzby.csv` a CLK Petriflow | nezverejnené v tomto repozitári | CLK pre ID 61; vetva SIS a spoločný koniec v balíku zdrojov | zachytená lokálna revízia |
+| SRC-061-017 | CONFIGURATION | `word_templates.json` | nezverejnené v tomto repozitári | šesť výstupov ID 61 | zachytená lokálna revízia |
+| SRC-061-018 | OUTPUT_TEMPLATE | Rozhodnutie_Zapis_do_RL.docx | nezverejnené v tomto repozitári | celý dokument | zachytená lokálna revízia |
+| SRC-061-019 | OUTPUT_TEMPLATE | Osvedcenie_o_zapise_do_RLSR.docx | nezverejnené v tomto repozitári | celý dokument | zachytená lokálna revízia |
+| SRC-061-020 | OUTPUT_TEMPLATE | List_pravoplatnost_zapis_do_RL.docx | nezverejnené v tomto repozitári | celý dokument | zachytená lokálna revízia |
+| SRC-061-021 | OUTPUT_TEMPLATE | Prerusenie_konania_DCL.docx | nezverejnené v tomto repozitári | celý dokument | zachytená lokálna revízia |
+| SRC-061-022 | OUTPUT_TEMPLATE | Zastavenie_konania_DCL.docx | nezverejnené v tomto repozitári | celý dokument | zachytená lokálna revízia |
+| SRC-061-023 | OUTPUT_TEMPLATE | Nalepky.docx | nezverejnené v tomto repozitári | celý dokument | zachytená lokálna revízia |
+| SRC-061-024 | SHAREPOINT | Súbor podkladov registra lietadiel | nezverejnené v tomto repozitári | žiadosť, vzor rozhodnutia, osvedčenie, list právoplatnosti, rozšírenie registra a schéma databázy | zachytené 2026-08-31 |
+| SRC-061-025 | SOURCE_DRAFT | Prehľad grafového okolia MUDU-061 | nezverejnené v tomto repozitári | 53 priamych kontextov a priami konzumenti; navigácia, nie autorita | vytvorené a manuálne skontrolované 2026-09-01 |
+| SRC-061-026 | CONFIGURATION | `portal_spravne_poplatky.csv` | nezverejnené v tomto repozitári | riadky ID 61 s kódmi 3034, 200 a 3036; porovnanie so zdrojmi MUDU-062 | zachytená lokálna revízia; skontrolované 2026-09-01 |
+| SRC-061-027 | SOURCE_DRAFT | Definícia procesu MUDU-063 vo verzii 0.1.0 | nezverejnené v tomto repozitári | všetkých 19 sekcií; vzájomná hranica registra | manuálne skontrolované 2026-09-01; `UNCONFIRMED` |

@@ -1,24 +1,32 @@
-# MUDU-061 graph — aircraft registration
+# MUDU-061 — zápis lietadla do registra
 
-`DRAFT / UNCONFIRMED`. This graph is a reading aid,not authority.
+`DRAFT / UNCONFIRMED` — pracovný návrh bez schválenia vecným gestorom.
+
+Diagram ukazuje iba zjednodušený priebeh. Úplné pravidlá sú v
+[`definition.md`](definition.md), najmä v sekciách 10 a 17.
 
 ```mermaid
 graph TD
-    A["Owner or representative submits request"] --> B["Check eligibility, data, documents and fee"]
-    B --> C["Check aircraft and every engine in SIS"]
-    C -->|Clear| D["Decide"]
-    C -->|Hit| X["Do not register and notify Police"]
-    D -->|Approved and final| E["Create registration and Slovak nationality"]
-    D -->|Rejected or stopped| Y["No registration"]
-    E --> F["Issue certificate and update public register"]
+    A["Vlastník alebo jeho zástupca podá žiadosť"] --> B["Úrad skontroluje oprávnenie, údaje, prílohy a poplatok"]
+    B -->|Nedostatok možno odstrániť| B1["Doplnenie alebo prerušenie konania"]
+    B1 --> B
+    B -->|Podmienky nie sú splnené| X["Lietadlo sa nezapíše"]
+    B -->|Podanie je úplné a podmienky sú splnené| C["Kontrola lietadla a všetkých motorov v SIS"]
+    C -->|Jednoznačný nález| Y["Lietadlo sa nezapíše a informuje sa Policajný zbor"]
+    C -->|Bez jednoznačného nálezu| D["Úrad rozhodne"]
+    D -->|Zamietnutie alebo zastavenie| X
+    D -->|Kladné právoplatné rozhodnutie| E["Zápis do registra a vznik štátnej príslušnosti SR"]
+    E --> F["Pridelenie značky, vydanie osvedčenia a aktualizácia verejnej časti registra"]
 ```
 
-Optional predecessor:`MUDU-060` preliminary mark. Separate downstream
-processes:`MUDU-062` change and `MUDU-063` deregistration. Portfolio impact
-only:`MUDU-091` Mode S/ELT.
+**Voliteľný predchodca:** MUDU-060 — predbežné pridelenie značky.
+**Samostatné neskoršie procesy:** MUDU-062 — zmena údajov a MUDU-063 — výmaz.
+MUDU-091 používa spoločné údaje, ale nie je krokom zápisu.
 
-## Open issues — not part of the process flow
+## Najdôležitejšie otvorené otázky — nie sú súčasťou toku
 
-- `GAP-061-005`:complete the real SIS request/result/hit integration.
-- `GAP-061-011`:prove aircraft and registration-mark uniqueness under concurrent requests.
-- `GAP-061-008`:bind delivery,appeal,finality,register update and certificate issuance precisely.
+- `GAP-061-005`: chýba preukázateľné volanie SIS, výsledok a vetva pre nález;
+- `GAP-061-008`: treba presne zviazať doručenie, rozklad, právoplatnosť, zápis a osvedčenie;
+- `GAP-061-011`: treba dokázať jedinečnosť lietadla a značky pri súbežných žiadostiach.
+
+Úplný zoznam je v sekcii 17 súboru [`definition.md`](definition.md).

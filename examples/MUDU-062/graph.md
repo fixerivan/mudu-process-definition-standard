@@ -1,32 +1,36 @@
-# MUDU-062 graph — change of aircraft-register data
+# MUDU-062 — zmena údajov v registri lietadiel
 
-`DRAFT / UNCONFIRMED`. This graph is a reading aid,not authority.
+`DRAFT / UNCONFIRMED` — pracovný návrh bez schválenia vecným gestorom.
+
+Diagram zobrazuje žiadosť vlastníka alebo oprávneného zástupcu. Osobitná oprava
+z vlastného podnetu úradu ešte nemá dohodnutý postup. Úplné pravidlá sú v
+[`definition.md`](definition.md), najmä v sekciách 10 a 17.
 
 ```mermaid
 graph TD
-    A["Existing MUDU-061 registration"] --> B["Identify exact old and new values"]
-    B --> C["Check applicant, documents and fee"]
-    C --> D["Check aircraft and every engine in SIS"]
-    D -->|Hit| X["Do not change register and notify Police"]
-    D -->|Clear| E["Decide"]
-    E -->|Approved| F["Apply change at its accepted effective event"]
-    E -->|Rejected or stopped| Y["No register change"]
-    F -->|Certificate changed| G["Replace certificate and return old one"]
-    F -->|Certificate unchanged| H["Keep existing certificate"]
-    G --> I["Update register views"]
-    H --> I
+    A["Existuje aktuálny zápis lietadla"] --> B["Oprávnená osoba požiada o presne určenú zmenu"]
+    B --> C["Úrad porovná pôvodné a požadované hodnoty, doklady a poplatok"]
+    C --> D["Kontrola lietadla a všetkých motorov v SIS"]
+    D -->|Jednoznačný nález| X["Register sa nezmení a informuje sa Policajný zbor"]
+    D -->|Bez jednoznačného nálezu| E["Úrad rozhodne o konkrétnej zmene"]
+    E -->|Zamietnutie alebo zastavenie| Y["Register zostane nezmenený"]
+    E -->|Kladné právoplatné rozhodnutie| F["Vykoná sa iba schválená zmena a zachová sa história"]
+    F --> G["Mení sa údaj uvedený v osvedčení?"]
+    G -->|Áno| H["Pôvodné osvedčenie sa vráti a vydá sa nové"]
+    G -->|Nie| I["Existujúce osvedčenie zostane platné"]
+    H --> J["Aktualizuje sa príslušná verejná alebo neverejná časť registra"]
+    I --> J
 ```
 
-This diagram shows the external request route. The separate ex-officio
-correction route remains unresolved in `GAP-062-012`.
+**Predchodca:** MUDU-061 — aktuálny zápis. **Samostatný neskorší proces:**
+MUDU-063 — výmaz. MUDU-091 používa spoločné údaje, ale nie je krokom zmeny.
 
-Predecessor:`MUDU-061` registration. Separate downstream process:`MUDU-063`
-deregistration. Portfolio impact only:`MUDU-091` Mode S/ELT.
+## Najdôležitejšie otvorené otázky — nie sú súčasťou toku
 
-## Open issues — not part of the process flow
+- `GAP-062-004`: sedem dnešných volieb treba nahradiť presným opisom pôvodnej a novej hodnoty;
+- `GAP-062-005`: chýba povinná kontrola lietadla a všetkých motorov v SIS;
+- `GAP-062-006`: poplatok sa musí odvodiť od skutočne meneného dokladu;
+- `GAP-062-012`: treba definovať osobitnú opravu z vlastného podnetu úradu;
+- `GAP-062-013` a `Q-062-001`: treba určiť ochranu pred súbežnou zmenou a presný okamih účinku.
 
-- `GAP-062-004`:replace the seven loose UI choices with one complete typed old-to-new change.
-- `GAP-062-006`:calculate the fee from the document actually changed.
-- `GAP-062-005`:complete the real SIS integration.
-- `GAP-062-013` and `Q-062-001`:define stale-data detection,effective dates and concurrent-change handling.
-- `GAP-062-012`:define the separate internal ex-officio correction route.
+Úplný zoznam je v sekcii 17 súboru [`definition.md`](definition.md).
