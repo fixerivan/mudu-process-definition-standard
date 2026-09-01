@@ -1,93 +1,56 @@
 ---
-name: mudu-process-definition
-description: Create, review, or update one strict human-and-machine-readable MUDU process definition per official catalogue process. Use for MUDU process Markdown, analyst/ministry scope definitions, source-to-process formalization, or validation before graph and Netgrif ingestion.
+name: mudu-process-review
+description: Generate or revise a short Slovak MUDU process proposal for analyst or ministry review from available sources. Use before detailed Petriflow formalization or implementation.
 ---
 
-# MUDU process definition
+# MUDU process review proposal
 
-Create or review exactly one `definition.md` for one official catalogue
-process. Never combine a process family, neighbouring lifecycle stages,
-technical helper nets, or several catalogue IDs into one definition.
+Generate one human-reviewable `definition.md` for one exact `MUDU-NNN` process.
+Read all of [`STANDARD.md`](STANDARD.md) first.
 
-Read all of [`STANDARD.md`](STANDARD.md) before starting. A new definition must
-contain its metadata, human-readable quick overview, and complete structured
-reference records.
+## Goal
+
+Research broadly but communicate narrowly. The reviewer must understand what
+the process does, its boundaries, proposed flow, important rules, contradictions,
+and the exact decisions requested from them.
+
+Do not expose the internal evidence model, implementation inventory, graph
+schema, or test architecture in the review proposal.
 
 ## Language boundary
 
-- Write all business and legal meaning in Slovak: names, purpose, actors,
-  requirements, steps, outputs, gaps, questions, and diagram labels.
-- Keep system syntax in English: YAML keys, stable IDs, enum values, and this
-  instruction file.
-- Put the YAML metadata inside the leading
-  `<!-- mudu-process-definition-metadata ... -->` comment required by the
-  standard. Never expose it as a rendered front-matter table before the human
-  process summary.
-- Preserve exact code, file, field, transition, and configured-value names and
-  format them as code, for example `vehicle.xml` or `reason_delete`.
-- Do not mix English engineering jargon into Slovak process sentences when a
-  clear Slovak expression exists.
-- Language never establishes authority. The explicit layer, status, and cited
-  source do.
+- Write all process meaning, questions, and diagram labels in Slovak.
+- Keep metadata keys, statuses, and stable IDs in English.
+- Preserve an exact technical identifier only when the reviewer needs it to
+  answer a question; format it as code.
 
-## Non-negotiable rules
+## Method
 
-- Preserve the official catalogue ID and name. Put a clearer working name in
-  `canonical_name` without presenting it as an approved official renaming.
-- Give every scope statement, requirement, actor, field, document, timing rule,
-  invariant, step, output, integration, scenario, dependency, mapping, gap, and
-  question a stable process-scoped ID. Never reuse an ID for another meaning.
-- Keep `LAW`, `OFFICIAL_PROCEDURE`, `ACCEPTED_INTENT`,
-  `CURRENT_IMPLEMENTATION`, `OBSERVATION`, and `PROPOSAL` separate. Code or EA
-  can prove implementation facts, never business authority.
-- A confirmed normative statement needs an exact source edition, locator,
-  clause or range, and effective or observation date.
-- Use `UNKNOWN`, `CONFLICT`, or `NOT_APPLICABLE` explicitly. Never fill a gap
-  from inference, similarity, model confidence, or a neighbouring process.
-- Keep proposals and open questions out of the confirmed contract. Only an
-  authorized human may set `ACCEPTED_INTENT`, `ACCEPTED`, or `FROZEN`.
-- Sections 2 through 15 describe business meaning. Put current EA, Petriflow,
-  code, configuration, templates, and runtime findings in section 16 and never
-  silently promote them into requirements.
-- Preserve process boundaries with exact `MUDU-NNN` references. A change,
-  renewal, cancellation, registration, appeal, or downstream process remains
-  separate when it has its own catalogue ID.
-- The LLM authoring the definition must directly read the cited sources and
-  author every semantic record. Another model, similarity result, or generated
-  text may suggest a candidate but cannot select identity, authority, or
-  business meaning. Deterministic extraction and validation are allowed.
-- Use a graph only as a dependency and conflict index. Review every material
-  relationship against its sources; an edge is never authority by itself.
-- A process diagram contains only a real trigger, activity, decision, state,
-  outcome, or genuine handoff. List sources, shared entities, possible impacts,
-  gaps, and questions separately below it with `DEP-*`, `GAP-*`, or `Q-*` IDs.
-- Use rectangles for activities and states and diamonds for decisions. Label
-  every outgoing decision branch with its actual outcome. Never use one visual
-  shape for semantically different node types.
-- A human must understand the process from the quick overview and diagram.
-  Detailed tables provide precision and machine processing; they must not hide
-  the basic meaning.
+1. Identify the exact catalogue process and read every relevant available
+   source, including the current Petriflow and implementation evidence.
+2. Separate supported facts, implementation observations, conflicts, and
+   unanswered business questions.
+3. Write the shortest complete explanation of the process purpose, trigger,
+   boundary, and successful result.
+4. Create a small top-level visual flow containing only business actions,
+   decisions, states, and outcomes.
+5. Include only rules that the reviewer needs to confirm.
+6. Convert every unresolved contradiction into a concrete question. Never
+   choose silently or use model confidence as authority.
+7. End with an explicit checklist of what the reviewer must confirm or correct.
+8. Keep the document `DRAFT / UNCONFIRMED` until an authorized human accepts it.
 
-## Workflow
+## Review quality gate
 
-1. Identify the exact `MUDU-NNN`, official catalogue name, and boundaries with
-   neighbouring processes.
-2. Find and read all applicable law, official procedures and forms, accepted
-   decisions, and current implementation evidence.
-3. Reconcile law, official procedure, accepted intent, and implementation.
-   Record conflicts instead of choosing silently.
-4. Write the quick overview in plain Slovak, then fill every required section.
-   Use an explicit `NOT_APPLICABLE` row with a reason where a section does not
-   apply.
-5. Check section order, table headers, enums, stable IDs, and every source
-   reference against `STANDARD.md`.
-6. Review the meaning of every claim, source completeness, direct dependencies,
-   possible impacts, and already-authored connected definitions.
-7. Create a small human-readable diagram of the real process flow. Keep issues
-   and impacts outside the flow and reference their exact definition records.
-8. Fix every error and save the result as `DRAFT / UNCONFIRMED`. Structural
-   correctness does not confer business acceptance or prove implementation.
+Before returning the proposal, verify that a reviewer can determine without
+technical project knowledge:
 
-On revision, preserve stable record IDs, increment `definition_version`, append
-section 18, and state the exact accepted change. Never rewrite accepted history
-silently.
+- what starts the process;
+- what the successful result is;
+- what belongs and does not belong to it;
+- who performs the important actions and decisions;
+- what is disputed or unknown;
+- exactly what response is requested.
+
+If any answer requires reading the internal evidence dossier, rewrite the
+proposal before returning it.
