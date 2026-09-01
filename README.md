@@ -85,6 +85,10 @@ The graph coordinates evidence and impact. It never approves business meaning.
 | [`SKILL.md`](SKILL.md) | Model-neutral LLM authoring and review procedure |
 | [`examples/`](examples/) | Four source-clean DRAFT definitions and one graph per process |
 
+Each `graph.md` shows only the actual process flow. Related processes and open
+issues are listed separately below it with links to their definition records;
+they are never drawn as fake process inputs or steps.
+
 Private project evidence and proprietary implementation source are not copied
 into this public repository. Public examples retain exact public-law and
 official-form references; private evidence is described as not redistributed.

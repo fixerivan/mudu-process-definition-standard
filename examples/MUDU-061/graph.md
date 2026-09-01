@@ -8,12 +8,16 @@ graph TD
     B --> C["Check aircraft and every engine in SIS"]
     C -->|Clear| D["Decide"]
     C -->|Hit| X["Do not register and notify Police"]
-    D -->|Final| E["Create registration and Slovak nationality"]
+    D -->|Approved and final| E["Create registration and Slovak nationality"]
+    D -->|Rejected or stopped| Y["No registration"]
     E --> F["Issue certificate and update public register"]
-    F --> G["Later change uses MUDU-062"]
-    F --> H["Deregistration uses MUDU-063"]
-    M["Aircraft, people, lien, mark and components"] -.-> E
-    G1["Open gap: SIS implementation"] -.-> C
-    G2["Open gap: uniqueness and concurrency"] -.-> E
-    G3["Open gap: output and finality"] -.-> F
 ```
+
+Related processes:`MUDU-060` optional preliminary mark,`MUDU-062` later
+change,`MUDU-063` deregistration and `MUDU-091` Mode S/ELT.
+
+## Open issues — not part of the process flow
+
+- `GAP-061-005`:complete the real SIS request/result/hit integration.
+- `GAP-061-011`:prove aircraft and registration-mark uniqueness under concurrent requests.
+- `GAP-061-008`:bind delivery,appeal,finality,register update and certificate issuance precisely.

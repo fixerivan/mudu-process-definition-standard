@@ -8,13 +8,18 @@ graph TD
     A2["Authority starts case without a request"] --> B2["Prove legal ground and hear affected parties"]
     B --> C["Decide"]
     B2 --> C
-    C -->|Final deregistration| D["Close current registration and preserve history"]
+    C -->|Approved and final| D["Close current registration and preserve history"]
+    C -->|Rejected or stopped| X["No deregistration"]
     D --> E["Issue deregistration certificate"]
     D --> F["Update current and historical register views"]
-    D -.-> M91["Review impact on MUDU-091"]
-    N["No SIS check for deregistration"] -.-> C
-    G1["Open gap: form, reason and attachments"] -.-> B
-    G2["Open gap: duplicate finality paths"] -.-> D
-    G3["Open gap: temporal closure"] -.-> D
-    G4["Open gap: outputs and tests"] -.-> E
 ```
+
+No SIS check applies to deregistration. Related processes:`MUDU-061`
+registration,`MUDU-062` change and `MUDU-091` Mode S/ELT impact review.
+
+## Open issues — not part of the process flow
+
+- `GAP-063-001` and `GAP-063-002`:reconcile the form,reason choices and attachment rules with current law.
+- `GAP-063-005`:replace the two competing finality paths with one idempotent effect.
+- `GAP-063-006` and `Q-063-002`:define how owner,operator,lien,mark and component histories close.
+- `GAP-063-009` to `GAP-063-012`:correct output templates and add process-specific tests.

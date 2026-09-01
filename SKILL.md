@@ -42,6 +42,11 @@ new definition from its required front matter and 19 table definitions.
 - Use a graph as a dependency/conflict oracle,never authority. Close every
   direct material dependency (Tier A) and manually review every possible
   indirect impact (Tier B) under the protocol.
+- A human process diagram contains only actual execution semantics:trigger,
+  activity,decision,state,outcome and a genuine process handoff. Never draw a
+  source,shared entity,impact candidate,gap,conflict or unknown as if it were a
+  process step. List those separately below the diagram and reference their
+  exact `DEP-*`,`GAP-*` or `Q-*` IDs.
 
 ## Workflow
 
