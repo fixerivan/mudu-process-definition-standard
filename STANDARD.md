@@ -310,6 +310,14 @@ nezávisle zopakovať kontrolu internej implementácie.
 
 ## Stav a pracovný postup
 
+Existujúci registrovaný offline korpus je povinný prvý vstup. Pred novým
+vyhľadávaním sa musia znovu použiť dostupné procesné spisy, EA, SharePoint,
+odovzdanie znalostí, databázové snímky, lokálne repozitáre, graf, Petriflow,
+konfigurácie, výstupy, testy a už stiahnuté oficiálne zdroje; dokončená práca sa
+neopakuje bez konkrétnej medzery. Až potom sa materiál rozšíri o ďalšie dostupné
+lokálne a aktuálne oficiálne online zdroje a zistenia sa vrátia do definície a
+grafu s viditeľnou aktuálnosťou, konfliktmi a chýbajúcimi podkladmi.
+
 - `DRAFT / UNCONFIRMED`: LLM vytvára obe vrstvy a kladie otázky.
 - `REVIEW`: analytik a gestor kontrolujú význam a relevantný detail.
 - `ACCEPTED`: oprávnený človek prijal presnú verziu celého Markdown súboru.

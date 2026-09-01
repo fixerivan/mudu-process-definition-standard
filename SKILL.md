@@ -30,21 +30,27 @@ silently changes the meaning presented for human acceptance.
 
 ## Workflow for an existing process
 
-1. Read all available law, forms, prior analysis, EA, Petriflow, code,
-   configuration, outputs and runtime evidence.
-2. Build the detailed structured layer and identify source conflicts,
+1. Start from the registered offline corpus: prior dossiers and definitions,
+   source inventories, EA, SharePoint and correspondence captures, knowledge
+   transfer, database snapshots, graph records, local repository refs,
+   Petriflow/code/configuration/outputs/tests and downloaded official material.
+   Reuse completed extraction and semantic work instead of repeating it.
+2. After exhausting applicable offline evidence, extend it with every relevant
+   additional local source and current official online law, procedure, form,
+   guidance or register; record currency, conflicts and missing material.
+3. Build the detailed structured layer and identify source conflicts,
    implementation mismatches and missing decisions.
-3. Generate the human layer from that detail: purpose, boundaries, top-level
+4. Generate the human layer from that detail: purpose, boundaries, top-level
    flow, important rules, concrete questions and requested confirmation.
-4. Add the required visible warning and bold `KLIKNITE SEM` disclosure before
+5. Add the required visible warning and bold `KLIKNITE SEM` disclosure before
    the collapsed detail; never rely on the browser’s small default arrow alone.
-5. Check that every human rule/question references existing stable IDs in the
+6. Check that every human rule/question references existing stable IDs in the
    detailed layer.
-6. Ask the analyst only questions requiring human business authority; update
+7. Ask the analyst only questions requiring human business authority; update
    both layers after every answer.
-7. Keep the file `DRAFT / UNCONFIRMED` until an authorized human accepts the
+8. Keep the file `DRAFT / UNCONFIRMED` until an authorized human accepts the
    exact version.
-8. After acceptance, use the complete file to create the actual Petriflow model,
+9. After acceptance, use the complete file to create the actual Petriflow model,
    impact graph, tests and proof artifacts.
 
 ## Workflow for a new process or change
