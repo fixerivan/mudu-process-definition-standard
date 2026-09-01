@@ -1,7 +1,7 @@
 ---
 schema: mudu-process-definition/v1
 process_id: MUDU-062
-catalogue_id: 062
+catalogue_id: "062"
 catalogue_name: "Žiadosť o zmenu zápisu do registra lietadiel"
 canonical_name: "Zmena údajov zapísaných v registri lietadiel Slovenskej republiky"
 definition_version: 0.1.1

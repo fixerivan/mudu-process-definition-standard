@@ -1,7 +1,7 @@
 ---
 schema: mudu-process-definition/v1
 process_id: MUDU-063
-catalogue_id: 063
+catalogue_id: "063"
 catalogue_name: "Výmaz lietadla z registra lietadiel Slovenskej republiky."
 canonical_name: "Výmaz lietadla z registra lietadiel Slovenskej republiky"
 definition_version: 0.1.0

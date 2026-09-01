@@ -31,7 +31,7 @@ The file begins with YAML front matter containing these keys in this order:
 ---
 schema: mudu-process-definition/v1
 process_id: MUDU-NNN
-catalogue_id: NNN
+catalogue_id: "NNN"
 catalogue_name: "Official catalogue name"
 canonical_name: "Current legally precise name"
 definition_version: 0.1.0
@@ -46,6 +46,9 @@ supersedes: null
 related_processes: [MUDU-NNN]
 ---
 ```
+
+`catalogue_id` is a quoted three-digit string. Never write an unquoted value
+such as `063`: YAML 1.1 readers can interpret it as octal and display `51`.
 
 Enums:
 

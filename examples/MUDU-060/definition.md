@@ -1,7 +1,7 @@
 ---
 schema: mudu-process-definition/v1
 process_id: MUDU-060
-catalogue_id: 060
+catalogue_id: "060"
 catalogue_name: "Žiadosť o pridelenie poznávacej značky lietadla"
 canonical_name: "Predbežné pridelenie registrovej značky lietadlu"
 definition_version: 0.1.1
