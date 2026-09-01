@@ -14,6 +14,8 @@ The same Markdown file contains:
 
 - a visible human acceptance layer;
 - a collapsed detailed structured layer;
+- a prominent visible warning that the complete definition continues below;
+- an explicit bold disclosure label beginning with `KLIKNITE SEM`;
 - stable IDs shared between both layers;
 - no unresolved contradiction hidden as a confirmed rule.
 
@@ -34,13 +36,15 @@ silently changes the meaning presented for human acceptance.
    implementation mismatches and missing decisions.
 3. Generate the human layer from that detail: purpose, boundaries, top-level
    flow, important rules, concrete questions and requested confirmation.
-4. Check that every human rule/question references existing stable IDs in the
+4. Add the required visible warning and bold `KLIKNITE SEM` disclosure before
+   the collapsed detail; never rely on the browser’s small default arrow alone.
+5. Check that every human rule/question references existing stable IDs in the
    detailed layer.
-5. Ask the analyst only questions requiring human business authority; update
+6. Ask the analyst only questions requiring human business authority; update
    both layers after every answer.
-6. Keep the file `DRAFT / UNCONFIRMED` until an authorized human accepts the
+7. Keep the file `DRAFT / UNCONFIRMED` until an authorized human accepts the
    exact version.
-7. After acceptance, use the complete file to create the actual Petriflow model,
+8. After acceptance, use the complete file to create the actual Petriflow model,
    impact graph, tests and proof artifacts.
 
 ## Workflow for a new process or change

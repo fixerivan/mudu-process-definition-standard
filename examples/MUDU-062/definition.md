@@ -85,8 +85,10 @@ graph TD
 
 ## 8. Detailná štruktúrovaná vrstva
 
+> **Kontrolná vrstva končí tu. Úplná definícia je zbalená nižšie; kliknutím ju otvoríte.**
+
 <details>
-<summary>Otvoriť úplnú vrstvu pre LLM, Petriflow, dopadovú analýzu a testy</summary>
+<summary><strong>KLIKNITE SEM: Otvoriť úplnú definíciu — roly, údaje, dokumenty, pravidlá, integrácie, mapovania, testy a zdroje</strong></summary>
 
 > Túto vrstvu generuje a udržiava LLM z dostupných zdrojov. Ľudská kontrolná
 > vrstva vyššie určuje prijatý vecný význam; detailná vrstva ho nesmie potichu

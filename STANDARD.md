@@ -95,11 +95,17 @@ detailnej vrstve.
 
 ## Detailná štruktúrovaná vrstva
 
+Bezprostredne pred detailom musí byť viditeľné upozornenie:
+
+```markdown
+> **Kontrolná vrstva končí tu. Úplná definícia je zbalená nižšie; kliknutím ju otvoríte.**
+```
+
 Detail je v rovnakom súbore pod zbaleným blokom:
 
 ```markdown
 <details>
-<summary>Otvoriť úplnú vrstvu pre LLM, Petriflow, dopadovú analýzu a testy</summary>
+<summary><strong>KLIKNITE SEM: Otvoriť úplnú definíciu — roly, údaje, dokumenty, pravidlá, integrácie, mapovania, testy a zdroje</strong></summary>
 
 ... sekcie D1 až D19 ...
 
