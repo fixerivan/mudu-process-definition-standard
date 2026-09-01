@@ -1,41 +1,48 @@
-# Formát návrhu procesu MUDU na vecnú kontrolu
+# Formát vrstevnatej definície procesu MUDU
 
 ## Účel
 
-Jeden súbor `definition.md` obsahuje návrh jedného katalógového procesu určený
-na kontrolu analytikom alebo vecným gestorom. Musí sa dať pochopiť bez znalosti
-EA, Petriflow XML, Java/Groovy kódu, grafovej databázy alebo testovacieho systému.
+Jeden `definition.md` je úplná kanonická definícia jedného katalógového procesu.
+Obsahuje ľudskú kontrolnú vrstvu aj detailnú štruktúrovanú vrstvu; žiadne
+podstatné roly, údaje, dokumenty, pravidlá, integrácie, mapovania ani zdroje sa
+neuchovávajú iba v inom textovom dokumente.
 
-Dokument nie je dôkaz, implementačný dossier ani automatické schválenie. Je to
-presná formulácia toho, čo LLM pochopil a čo potrebuje človek potvrdiť.
+LLM vytvára a udržiava obe vrstvy. Analytik a gestor kontrolujú ľudskú vrstvu,
+odpovedajú na otázky a podľa potreby otvárajú relevantný detail; prijatá verzia
+celého Markdown súboru je vstupom pre Petriflow.
+
+## Autorita vrstiev
+
+- Ľudská vrstva určuje vecný význam, hranice, hlavný priebeh a rozhodnutia.
+- Detailná vrstva obsahuje úplné rozpracovanie potrebné pre Petriflow, dopady,
+  implementáciu, testy a dôkazy.
+- Detailná vrstva nesmie potichu meniť prijatý význam.
+- Zmena detailu, ktorá mení význam, sa musí premietnuť do ľudskej vrstvy a
+  prejsť novým prijatím.
 
 ## Jazyk
 
 - Procesný význam a otázky sú po slovensky.
-- Strojové metadáta, stabilné ID a povolené stavy sú v angličtine.
-- Presné technické identifikátory sa uvádzajú iba vtedy, keď ich človek potrebuje
-  na rozhodnutie; zapisujú sa ako kód.
-- Angličtina ani výstup LLM neurčujú autoritu. Rozhoduje človek.
+- Metadáta, stabilné ID a povolené stavy sú anglická systémová syntax.
+- Presný technický identifikátor zostáva v pôvodnom tvare a zapisuje sa ako kód.
+- Výstup LLM, graf ani implementácia samy neurčujú business autoritu.
 
 ## Skryté metadáta
 
-Súbor začína neviditeľným komentárom:
-
 ```text
-<!-- mudu-process-review-metadata
-schema: mudu-process-review/v1
+<!-- mudu-process-definition-metadata
+schema: mudu-process-definition/v1
 process_id: MUDU-NNN
 catalogue_id: "NNN"
-review_version: 0.1.0
+definition_version: 0.1.0
 status: DRAFT
 authority: UNCONFIRMED
 language: sk
+related_processes: []
 -->
 ```
 
-GitHub preto zobrazí najprv ľudský názov a obsah.
-
-## Povinná štruktúra
+## Ľudská kontrolná vrstva
 
 ### Nadpis a stav
 
@@ -47,8 +54,7 @@ GitHub preto zobrazí najprv ľudský názov a obsah.
 
 ### 1. Čo podľa zdrojov proces robí
 
-Krátky súvislý opis účelu, spúšťača a úspešného výsledku. Nesmie obsahovať
-technické vnútornosti systému.
+Krátky opis účelu, spúšťača a úspešného výsledku.
 
 ### 2. Hranice procesu
 
@@ -56,15 +62,10 @@ technické vnútornosti systému.
 | Patrí do procesu | Nepatrí do procesu |
 ```
 
-Susedné katalógové procesy sa pomenúvajú presným `MUDU-NNN`.
-
 ### 3. Navrhovaný priebeh
 
-Obsahuje malý diagram a iba hlavné obchodné kroky. Činnosť alebo stav je
-obdĺžnik; rozhodnutie je kosoštvorec s pomenovanými výsledkami.
-
-Diagram je návrh na kontrolu. Po potvrdení sa musí viazať na skutočný Petriflow
-model; nesmie zostať nezávislou paralelnou definíciou.
+Malý diagram obsahuje iba hlavné obchodné činnosti, rozhodnutia, stavy a
+výsledky. Po prijatí sa musí viazať na skutočný Petriflow model.
 
 ### 4. Pravidlá, ktoré treba potvrdiť
 
@@ -72,8 +73,7 @@ model; nesmie zostať nezávislou paralelnou definíciou.
 | ID | Navrhované pravidlo | Podklad |
 ```
 
-Používajú sa iba pravidlá podstatné pre ľudské rozhodnutie. ID majú tvar
-`R1`, `R2`, ... a zostávajú stabilné počas kontroly návrhu.
+ID odkazuje na existujúci `REQ-*` alebo `RULE-*` z detailnej vrstvy.
 
 ### 5. Rozpory a otázky
 
@@ -81,34 +81,236 @@ Používajú sa iba pravidlá podstatné pre ľudské rozhodnutie. ID majú tvar
 | ID | Čo sme našli | Otázka pre gestora |
 ```
 
-LLM nesmie rozpor vyriešiť odhadom. Každá otázka musí vyžadovať konkrétnu
-odpoveď. ID majú tvar `Q1`, `Q2`, ...
+ID odkazuje na existujúci `GAP-*` alebo `Q-*` z detailnej vrstvy. LLM nesmie
+rozpor vyriešiť odhadom.
 
 ### 6. Čo potrebujeme potvrdiť
 
-Krátky kontrolný zoznam presne pomenúva, čo má recenzent potvrdiť alebo opraviť.
+Kontrolný zoznam presne pomenúva, čo má recenzent potvrdiť alebo opraviť.
 
-### Zdroje
+### 7. Zdroje použité pre návrh
 
-Uvádzajú sa čitateľné názvy a odkazy na použité verejné zdroje. Interné zdroje
-sa môžu pomenovať bez zverejnenia obsahu. Verejný dokument neobsahuje hashové
-ani fingerprintové polia.
+Čitateľný zoznam hlavných zdrojov pre ľudskú kontrolu; úplný register je v
+detailnej vrstve.
 
-## Čo do návrhu nepatrí
+## Detailná štruktúrovaná vrstva
 
-- úplné mapovanie EA, kódu a konfigurácie;
-- zoznam každého poľa a interného objektu;
-- kompletná evidencia grafových hrán;
-- implementačné testy a dôkazy;
-- technické chyby, ktoré nevyžadujú vecné rozhodnutie;
-- návrhy vydávané za potvrdené fakty.
+Detail je v rovnakom súbore pod zbaleným blokom:
 
-Tieto údaje systém udržiava interne a po prijatí procesu ich viaže na konkrétne
-pravidlá a prvky Petriflow.
+```markdown
+<details>
+<summary>Otvoriť úplnú vrstvu pre LLM, Petriflow, dopadovú analýzu a testy</summary>
 
-## Stav
+... sekcie D1 až D19 ...
 
-- `DRAFT / UNCONFIRMED`: LLM návrh pred ľudskou kontrolou.
-- `REVIEW`: analytik návrh kontroluje a odpovedá na otázky.
-- `ACCEPTED`: oprávnený človek prijal význam procesu.
+</details>
+```
+
+V zbalenej detailnej vrstve nasledujú tieto referenčné sekcie. Každá sa v dokumente
+nachádza práve raz a v tomto poradí. Prázdnu sekciu
+nevynechávajte; použite jeden riadok `NOT_APPLICABLE` s dôvodom.
+
+### D1. Identita a stav
+
+```text
+| Pole | Hodnota |
+```
+
+Required fields: `Katalógové ID`, `Katalógový názov`, `Kanonický názov`,
+`Vecný gestor`, `Typ procesu`, `Definičný stav`, `Autorita`, `Jazyk`.
+
+Typ procesu je napríklad `APPLICATION_DECISION`, `NOTIFICATION`,
+`REGISTRY_MUTATION`, `EXAMINATION`, `CERTIFICATION`, `APPROVAL`, `STATEMENT`,
+`SUPERVISION`, `INTERNAL`, `INTER_AUTHORITY`, and `OTHER`.
+
+### D2. Účel, spúšťač a hranice
+
+```text
+| ID | Typ | Tvrdenie | Vrstva | Stav | Zdroje |
+```
+
+Použite `PURPOSE`, `TRIGGER`, `IN_SCOPE` alebo `OUT_OF_SCOPE`. Susedné
+katalógové procesy oddeľte výslovne.
+
+### D3. Autorita a právny základ
+
+```text
+| ID | Modalita | Normatívne pravidlo | Vrstva | Stav | Zdroje |
+```
+
+Každé právne tvrdenie odkazuje na konkrétne ustanovenie. Samotný všeobecný
+odkaz na predpis nestačí.
+
+### D4. Aktéri a oprávnenia
+
+```text
+| ID | Aktér | Typ | Oprávnenie a zodpovednosť | Vrstva | Stav | Zdroje |
+```
+
+Oddeľte žiadateľa, dotknutú osobu, zástupcu, spracovateľa, schvaľovateľa, iný
+orgán a systémovú rolu.
+
+### D5. Vstupy a predpoklady
+
+```text
+| ID | Podmienka alebo vstup | Povinnosť | Vrstva | Stav | Zdroje |
+```
+
+Použite `REQUIRED`, `CONDITIONAL`, `OPTIONAL` alebo `NOT_APPLICABLE`.
+
+### D6. Údaje formulára
+
+```text
+| ID | Údaj | Typ | Kardinalita | Zdroj/hodnota | Validácia | Vrstva | Stav | Zdroje |
+```
+
+Kardinalita je výslovná (`1`, `0..1`, `1..*`, `0..*`). Podmienka odkazuje na
+stabilné ID pravidla. Skupinové pole možno použiť, ak zdroj určuje štruktúrovanú
+skupinu údajov.
+
+### D7. Dokumenty a prílohy
+
+```text
+| ID | Dokument/príloha | Povinnosť | Forma | Vrstva | Stav | Zdroje |
+```
+
+Nekopírujte prílohy zo súvisiaceho procesu. Oddeľte právne požiadavky, oficiálne
+formuláre a dnešnú konfiguráciu implementácie.
+
+### D8. Poplatky, lehoty a časové pravidlá
+
+```text
+| ID | Typ pravidla | Hodnota | Spúšťač/začiatok | Vrstva | Stav | Zdroje |
+```
+
+Oddeľte zákonné lehoty, prevádzkové ciele, platnosť, prerušenia, obnovovanie a
+poplatky. Pri lehote vždy uveďte udalosť, od ktorej začína plynúť.
+
+### D9. Rozhodovacie pravidlá a invarianty
+
+```text
+| ID | Modalita | Pravidlo/invariant | Vrstva | Stav | Zdroje |
+```
+
+Uveďte pravidlá jedinečnosti, vzájomného vylúčenia, predchodcu, právoplatnosti,
+vedľajších účinkov a súbehu potrebné na formalizáciu.
+
+### D10. Procesný tok
+
+```text
+| ID | Poradie | Stav pred | Činnosť | Aktér | Podmienka | Stav po | Vrstva | Stav | Zdroje |
+```
+
+Kroky opisujú vecný priebeh procesu. Čisto implementačné kroky musia byť takto
+označené. Vetvenie odkazuje na `RULE-*`; poradie sa nesmie domyslieť iba z
+usporiadania kódu.
+
+### D11. Výstupy, právne účinky a koncové stavy
+
+```text
+| ID | Typ | Výstup/účinok | Právoplatnosť/platnosť | Vrstva | Stav | Zdroje |
+```
+
+Oddeľte dokumenty, rozhodnutia, osvedčenia, zmeny registra, zverejnenia,
+notifikácie a negatívne výsledky. Čas vytvorenia dokumentu nie je automaticky
+časom právneho účinku.
+
+### D12. Integrácie a notifikácie
+
+```text
+| ID | Typ | Systém/príjemca | Účel/obsah | Kritickosť | Vrstva | Stav | Zdroje |
+```
+
+Použite `INTEGRATION` alebo `NOTIFICATION`. Existencia nakonfigurovaného
+adaptéra nedokazuje, že externé volanie prebehlo úspešne.
+
+### D13. Alternatívne, chybové a opravné scenáre
+
+```text
+| ID | Spúšťač | Očakávané správanie | Koncový stav | Vrstva | Stav | Zdroje |
+```
+
+Podľa potreby pokryte chýbajúce dôkazy, neplatné údaje, negatívne rozhodnutie,
+prerušenie, zastavenie, opravný prostriedok, externé zlyhanie, opakovanie a súbeh.
+
+### D14. Väzby na iné procesy a dopad zmien
+
+```text
+| ID | Smer | Proces/artefakt | Typ väzby | Dopad | Vrstva | Stav | Zdroje |
+```
+
+Použite presné ID procesov a `PREDECESSOR`, `SUCCESSOR`, `DEPENDS_ON`, `PRODUCES_FOR`,
+`SHARED_ENTITY`, `SHARED_INTEGRATION`, `SHARED_OUTPUT`, or `OUT_OF_SCOPE`.
+
+### D15. Akceptačné scenáre
+
+```text
+| ID | Given | When | Then | Pokrýva | Stav |
+```
+
+Scenáre odkazujú na ID `REQ`, `RULE`, `STEP`, `OUT`, `ALT` a `INT`. Sú to
+kontrolovateľné vecné príklady, z ktorých neskôr vzniknú kontroly API, dát,
+Playwrightu a formálne pravidlá.
+
+### D16. Mapovanie na EA, Petriflow a kód
+
+```text
+| ID | Vrstva implementácie | Artefakt | Presná väzba | Stav | Zdroje |
+```
+
+Uveďte presný GUID alebo Object ID v EA, súbor/proces/prechod/pole v Petriflow,
+cestu ku kódu a jeho verziu, riadok konfigurácie, výstupnú šablónu a dôkaz z
+behu systému. Táto sekcia iba opisuje implementáciu a nemôže meniť sekcie 2 až 15.
+
+### D17. Medzery, konflikty a otvorené rozhodnutia
+
+```text
+| ID | Typ | Otázka/konflikt | Potrebné rozhodnutie | Vlastník | Stav | Zdroje |
+```
+
+Použite `SOURCE_CONFLICT`, `INTENT_QUESTION`, `IMPLEMENTATION_GAP`,
+`EVIDENCE_GAP` alebo `PROPOSAL`. Nevyriešená vec nesmie zostať skrytá iba v
+súvislom texte.
+
+### D18. Schválenie a história zmien
+
+```text
+| Verzia | Dátum | Zmena | Autorita | Stav |
+```
+
+Zaznamenajte každú verziu definície. Pri prijatí musí riadený pracovný postup
+určiť oprávnenú osobu aj konkrétnu prijatú verziu súboru v Git.
+
+### D19. Register zdrojov
+
+```text
+| ID | Typ | Názov/verzia | Lokátor | Ustanovenie/rozsah | Účinnosť/pozorovanie |
+```
+
+Typ zdroja je napríklad `LAW`, `OFFICIAL_PROCEDURE`, `OFFICIAL_FORM`,
+`ACCEPTED_DECISION`, `EA`, `SHAREPOINT`, `KNOWLEDGE_TRANSFER`, `PETRIFLOW`,
+`SOURCE_CODE`, `CONFIGURATION`, `OUTPUT_TEMPLATE`, `RUNTIME_EVIDENCE`, and
+`SOURCE_DRAFT`.
+
+Každý odkaz na zdroj použitý v dokumente musí existovať v tomto registri.
+Uveďte presné vydanie, umiestnenie, ustanovenie alebo rozsah a dátum účinnosti
+alebo pozorovania.
+
+Verejná kópia môže súkromné umiestnenie nahradiť textom
+`nezverejnené v tomto repozitári`. Musí však jasne povedať, že interný podklad
+nebol zverejnený. Verejný čitateľ preto vie posúdiť obsah návrhu, ale nevie
+nezávisle zopakovať kontrolu internej implementácie.
+
+
+## Stav a pracovný postup
+
+- `DRAFT / UNCONFIRMED`: LLM vytvára obe vrstvy a kladie otázky.
+- `REVIEW`: analytik a gestor kontrolujú význam a relevantný detail.
+- `ACCEPTED`: oprávnený človek prijal presnú verziu celého Markdown súboru.
 - `FROZEN`: prijatá verzia je základom pre Petriflow, implementáciu a testy.
+
+`všetky zdroje → kompletný vrstevnatý .md → ľudská kontrola a odpovede → prijatá presná verzia .md → Petriflow → dopady, implementácia, testy a dôkazy`
+
+Pri novom procese alebo zmene LLM kladie otázky a dopĺňa obe vrstvy, kým je
+súbor úplný a pripravený na prijatie. Pri zmene sa zachovávajú stabilné ID a
+zobrazuje sa ľudsky čitateľný rozdiel.

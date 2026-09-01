@@ -1,56 +1,68 @@
 ---
-name: mudu-process-review
-description: Generate or revise a short Slovak MUDU process proposal for analyst or ministry review from available sources. Use before detailed Petriflow formalization or implementation.
+name: mudu-process-definition
+description: Generate or revise one complete layered Slovak MUDU process definition in Markdown, combining a human acceptance layer with the detailed structured layer required for Petriflow, impact analysis, tests and verification.
 ---
 
-# MUDU process review proposal
+# Layered MUDU process definition
 
-Generate one human-reviewable `definition.md` for one exact `MUDU-NNN` process.
-Read all of [`STANDARD.md`](STANDARD.md) first.
+Create or revise exactly one `definition.md` for one exact `MUDU-NNN`. Read all
+of [`STANDARD.md`](STANDARD.md) before starting.
 
-## Goal
+## Required result
 
-Research broadly but communicate narrowly. The reviewer must understand what
-the process does, its boundaries, proposed flow, important rules, contradictions,
-and the exact decisions requested from them.
+The same Markdown file contains:
 
-Do not expose the internal evidence model, implementation inventory, graph
-schema, or test architecture in the review proposal.
+- a visible human acceptance layer;
+- a collapsed detailed structured layer;
+- stable IDs shared between both layers;
+- no unresolved contradiction hidden as a confirmed rule.
 
-## Language boundary
+The human layer never replaces or discards detail. The detailed layer never
+silently changes the meaning presented for human acceptance.
 
-- Write all process meaning, questions, and diagram labels in Slovak.
-- Keep metadata keys, statuses, and stable IDs in English.
-- Preserve an exact technical identifier only when the reviewer needs it to
-  answer a question; format it as code.
+## Language
 
-## Method
+- Process meaning, questions and diagram labels are Slovak.
+- Metadata keys, statuses and stable IDs are English system syntax.
+- Exact technical identifiers are preserved as code only where needed.
 
-1. Identify the exact catalogue process and read every relevant available
-   source, including the current Petriflow and implementation evidence.
-2. Separate supported facts, implementation observations, conflicts, and
-   unanswered business questions.
-3. Write the shortest complete explanation of the process purpose, trigger,
-   boundary, and successful result.
-4. Create a small top-level visual flow containing only business actions,
-   decisions, states, and outcomes.
-5. Include only rules that the reviewer needs to confirm.
-6. Convert every unresolved contradiction into a concrete question. Never
-   choose silently or use model confidence as authority.
-7. End with an explicit checklist of what the reviewer must confirm or correct.
-8. Keep the document `DRAFT / UNCONFIRMED` until an authorized human accepts it.
+## Workflow for an existing process
 
-## Review quality gate
+1. Read all available law, forms, prior analysis, EA, Petriflow, code,
+   configuration, outputs and runtime evidence.
+2. Build the detailed structured layer and identify source conflicts,
+   implementation mismatches and missing decisions.
+3. Generate the human layer from that detail: purpose, boundaries, top-level
+   flow, important rules, concrete questions and requested confirmation.
+4. Check that every human rule/question references existing stable IDs in the
+   detailed layer.
+5. Ask the analyst only questions requiring human business authority; update
+   both layers after every answer.
+6. Keep the file `DRAFT / UNCONFIRMED` until an authorized human accepts the
+   exact version.
+7. After acceptance, use the complete file to create the actual Petriflow model,
+   impact graph, tests and proof artifacts.
 
-Before returning the proposal, verify that a reviewer can determine without
-technical project knowledge:
+## Workflow for a new process or change
 
-- what starts the process;
-- what the successful result is;
+Start from the analyst’s intent and ask targeted questions until both layers are
+complete. For a change, preserve stable IDs, show the human-readable difference,
+recompute affected processes and require renewed acceptance before updating
+Petriflow.
+
+## Human layer quality gate
+
+The reviewer must be able to determine without reading the complete detail:
+
+- what starts the process and what successful completion means;
 - what belongs and does not belong to it;
-- who performs the important actions and decisions;
-- what is disputed or unknown;
+- the main actions, decisions and outcomes;
+- the important rules;
+- what remains disputed;
 - exactly what response is requested.
 
-If any answer requires reading the internal evidence dossier, rewrite the
-proposal before returning it.
+## Detailed layer quality gate
+
+Validate every required section, table, enum, ID and source reference. Current
+implementation evidence may prove what exists, but never business authority;
+graph edges, similarity and model confidence are never acceptance.
