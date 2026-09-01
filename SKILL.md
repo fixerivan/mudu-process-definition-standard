@@ -35,9 +35,10 @@ new definition from its required front matter and 19 table definitions.
 - Preserve cross-process boundaries with exact `MUDU-NNN` references. A change,
   renewal, cancellation, registration, appeal or downstream process remains a
   separate definition when it has its own catalogue ID.
-- The primary Codex agent personally reads sources and authors every semantic
-  record. Do not delegate semantic authorship to Qwen,another LLM,similarity or
-  automated generation. Deterministic extraction/query/validation is allowed.
+- The LLM performing the task must directly read the sources and author every
+  semantic record. Another model,similarity,embeddings or generated text may
+  suggest evidence but cannot select identity,authority or business meaning.
+  Deterministic extraction,query and validation are allowed.
 - Use a graph as a dependency/conflict oracle,never authority. Close every
   direct material dependency (Tier A) and manually review every possible
   indirect impact (Tier B) under the protocol.

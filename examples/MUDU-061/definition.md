@@ -324,7 +324,7 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | GAP-061-013 | IMPLEMENTATION_GAP | aircraft.xml vyberá pre stredné MTOW pásmo PEP kód3035,ale portal_spravne_poplatky.csv viaže ID61 na kód200. | Autoritatívne určiť správny kód a zosúladiť XML,CSV,PEP a testy bez tichej substitúcie. | Netgrif + prevádzkovateľ PEP | CONFLICT | SRC-061-013, SRC-061-026 |
 | Q-061-001 | INTENT_QUESTION | Je model lietadla a skutočné umiestnenie povinným alebo voliteľným biznis údajom nad rámec vyhlášky, alebo iba technickou položkou? | Prijať význam, kardinalitu, verejnosť a validačné pravidlo, alebo údaje odstrániť. | Vecný gestor | UNKNOWN | SRC-061-002, SRC-061-007, SRC-061-013 |
 | Q-061-002 | INTENT_QUESTION | Aký presný právny/prevádzkový účel majú nálepky a kedy sa vydávajú? | Zviazať ich s prijatým účelom a výstupovým stavom alebo ich vyradiť. | Vecný gestor | UNKNOWN | SRC-061-017, SRC-061-023 |
-| Q-061-003 | EVIDENCE_GAP | Vyriešené vo verzii 0.1.2: MUDU-063 je manuálne definované a štvorprocesová kontrola potvrdila oddelenie zápisu, zmeny a výmazu, no-SIS hranicu výmazu, zachovanie histórie a explicitné spoločné časové medzery. | Bez ďalšieho rozhodnutia; kontrolu obnoviť pri zmene ktoréhokoľvek MUDU-060 až MUDU-063. | Codex | CONFIRMED | SRC-061-027 |
+| Q-061-003 | EVIDENCE_GAP | Vyriešené vo verzii 0.1.2: MUDU-063 je manuálne definované a štvorprocesová kontrola potvrdila oddelenie zápisu, zmeny a výmazu, no-SIS hranicu výmazu, zachovanie histórie a explicitné spoločné časové medzery. | Bez ďalšieho rozhodnutia; kontrolu obnoviť pri zmene ktoréhokoľvek MUDU-060 až MUDU-063. | Semantic author | CONFIRMED | SRC-061-027 |
 
 ## 18. Schválenie a história zmien
 

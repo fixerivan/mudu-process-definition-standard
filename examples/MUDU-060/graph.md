@@ -3,16 +3,15 @@
 `DRAFT / UNCONFIRMED`. This graph is a reading aid,not authority.
 
 ```mermaid
-flowchart LR
-    A[Owner requests<br/>preliminary mark] --> B[Check aircraft and<br/>proposed mark data]
-    B --> C[Decide]
-    C -->|approved| D[Reserve preliminary mark<br/>for one year]
-    D --> E[MUDU-061<br/>registration]
-    C -->|rejected / stopped| X[No reservation]
-
-    M[Registration mark<br/>and history] --- D
-    G1[Open: atomic reservation<br/>and concurrency] -.-> D
-    G2[Open: older form<br/>and attachment rules] -.-> B
+graph TD
+    A["Owner requests preliminary mark"] --> B["Check aircraft and mark data"]
+    B --> C["Decide"]
+    C -->|Approved| D["Reserve mark for one year"]
+    D --> E["Continue with MUDU-061 registration"]
+    C -->|Rejected or stopped| X["No reservation"]
+    M["Registration mark history"] -.-> D
+    G1["Open gap: reservation concurrency"] -.-> D
+    G2["Open gap: form and attachment rules"] -.-> B
 ```
 
 Connected processes:`MUDU-061` registration,`MUDU-062` later change,

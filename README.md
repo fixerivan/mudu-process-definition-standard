@@ -54,7 +54,7 @@ finds that candidate set; the definitions explain the exact impact.
 
 ## How the team uses it
 
-1. Codex/analyst prepares one source-backed DRAFT.
+1. An LLM working with an analyst prepares one source-backed DRAFT.
 2. Analyst and ministry review the exact file and resolve its open questions.
 3. They accept and freeze one exact Git revision.
 4. Netgrif implements only the accepted delta in Petriflow/code.
@@ -82,7 +82,7 @@ The graph coordinates evidence and impact. It never approves business meaning.
 | Path | Purpose |
 | --- | --- |
 | [`STANDARD.md`](STANDARD.md) | Normative 19-section Markdown contract |
-| [`SKILL.md`](SKILL.md) | Complete Codex authoring and review procedure |
+| [`SKILL.md`](SKILL.md) | Model-neutral LLM authoring and review procedure |
 | [`examples/`](examples/) | Four source-clean DRAFT definitions and one graph per process |
 
 Private project evidence and proprietary implementation source are not copied
@@ -96,7 +96,7 @@ verified in the authorized implementation repository.
 
 ## Add the next process
 
-1. Give Codex [`SKILL.md`](SKILL.md) and [`STANDARD.md`](STANDARD.md).
+1. Give the LLM [`SKILL.md`](SKILL.md) and [`STANDARD.md`](STANDARD.md).
 2. Add `examples/MUDU-NNN/definition.md` and its small `graph.md`.
 3. Account for every direct dependency and inspect shared resources that may be affected.
 4. Recheck already-authored connected processes and version affected drafts.

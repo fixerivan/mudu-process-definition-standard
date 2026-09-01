@@ -324,7 +324,7 @@ related_processes: [MUDU-060, MUDU-061, MUDU-063, MUDU-091]
 | GAP-062-014 | EVIDENCE_GAP | Neexistuje exact procesový test,fixture ani SIS/CLK mock/module v zachytených repozitároch. | Po akceptácii definície vytvoriť deterministic fixtures,third-party mocks,formal invariants and API/data/Playwright tests. | Netgrif | UNKNOWN | SRC-062-032 |
 | GAP-062-015 | EVIDENCE_GAP | Nebol preukázaný end-to-end MUDU-062 beh cez všetkých sedem delta variantov,platbu,SIS,output,právoplatnosť,register,certificate predicate a public projection. | Overiť každý variant proti presne tejto definícii;ordinary bug nie je formal counterexample. | Netgrif + analytik | UNKNOWN | SRC-062-010, SRC-062-011, SRC-062-032 |
 | Q-062-001 | INTENT_QUESTION | Aký je autoritatívny okamih účinku zmeny:skutočný event,právoplatnosť rozhodnutia alebo iný dátum pri jednotlivých typoch delta? | Prijať per-delta effective-date rule and temporal-history invariant. | Vecný gestor + legislatíva | UNKNOWN | SRC-062-001, SRC-062-013, SRC-062-022 |
-| Q-062-002 | EVIDENCE_GAP | Vyriešené vo verzii 0.1.1: MUDU-063 je manuálne definované a recipročná kontrola potvrdila, že výmaz nie je `other` change variant, nevyžaduje SIS a musí zachovať históriu pri časovom uzavretí aktuálneho zápisu. | Bez ďalšieho rozhodnutia; obnoviť kontrolu pri zmene MUDU-060 až MUDU-063. | Codex | CONFIRMED | SRC-062-033 |
+| Q-062-002 | EVIDENCE_GAP | Vyriešené vo verzii 0.1.1: MUDU-063 je manuálne definované a recipročná kontrola potvrdila, že výmaz nie je `other` change variant, nevyžaduje SIS a musí zachovať históriu pri časovom uzavretí aktuálneho zápisu. | Bez ďalšieho rozhodnutia; obnoviť kontrolu pri zmene MUDU-060 až MUDU-063. | Semantic author | CONFIRMED | SRC-062-033 |
 
 ## 18. Schválenie a história zmien
 
