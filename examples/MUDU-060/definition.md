@@ -1,10 +1,10 @@
----
+<!-- mudu-process-definition-metadata
 schema: mudu-process-definition/v1
 process_id: MUDU-060
 catalogue_id: "060"
 catalogue_name: "Žiadosť o pridelenie poznávacej značky lietadla"
 canonical_name: "Predbežné pridelenie registrovej značky lietadlu"
-definition_version: 0.1.2
+definition_version: 0.1.3
 definition_status: DRAFT
 authority_status: UNCONFIRMED
 source_selection: SELECTED
@@ -12,9 +12,9 @@ implementation_conformance: NONCONFORMANT
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: 2026-09-01
-supersedes: "MUDU-060@0.1.1"
+supersedes: "MUDU-060@0.1.2"
 related_processes: [MUDU-059, MUDU-061, MUDU-062, MUDU-063, MUDU-091]
----
+-->
 
 # MUDU-060 — Predbežné pridelenie registrovej značky lietadlu
 
@@ -253,6 +253,7 @@ related_processes: [MUDU-059, MUDU-061, MUDU-062, MUDU-063, MUDU-091]
 | 0.1.0 | 2026-09-01 | Prvá pevná Markdown definícia odvodená zo zdrojového DOCX; oddelené právne fakty, implementácia, návrhy a konflikty; opravená hranica MUDU-060/061/062. | UNCONFIRMED | DRAFT |
 | 0.1.1 | 2026-09-01 | Krížová kontrola s MUDU-061 zviazala aktuálny poplatok 40 EUR za značku a elektronické zníženie s presnou časovou verziou zákona č. 145/1995 Z. z.; hranica MUDU-060/061 zostala nezmenená. | UNCONFIRMED | DRAFT |
 | 0.1.2 | 2026-09-01 | Doplnený ľudský rýchly prehľad a jazykové spresnenia bez zmeny vecných pravidiel procesu. | UNCONFIRMED | DRAFT |
+| 0.1.3 | 2026-09-01 | Strojové metadáta presunuté do neviditeľného komentára, aby sa pri otvorení dokumentu zobrazil najprv ľudský obsah; vecné pravidlá sa nezmenili. | UNCONFIRMED | DRAFT |
 
 ## 19. Register zdrojov
 

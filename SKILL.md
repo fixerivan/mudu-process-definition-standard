@@ -19,6 +19,10 @@ reference records.
   requirements, steps, outputs, gaps, questions, and diagram labels.
 - Keep system syntax in English: YAML keys, stable IDs, enum values, and this
   instruction file.
+- Put the YAML metadata inside the leading
+  `<!-- mudu-process-definition-metadata ... -->` comment required by the
+  standard. Never expose it as a rendered front-matter table before the human
+  process summary.
 - Preserve exact code, file, field, transition, and configured-value names and
   format them as code, for example `vehicle.xml` or `reason_delete`.
 - Do not mix English engineering jargon into Slovak process sentences when a
@@ -57,6 +61,9 @@ reference records.
 - A process diagram contains only a real trigger, activity, decision, state,
   outcome, or genuine handoff. List sources, shared entities, possible impacts,
   gaps, and questions separately below it with `DEP-*`, `GAP-*`, or `Q-*` IDs.
+- Use rectangles for activities and states and diamonds for decisions. Label
+  every outgoing decision branch with its actual outcome. Never use one visual
+  shape for semantically different node types.
 - A human must understand the process from the quick overview and diagram.
   Detailed tables provide precision and machine processing; they must not hide
   the basic meaning.

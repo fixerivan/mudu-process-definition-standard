@@ -9,10 +9,10 @@ Diagram ukazuje dve zákonné cesty k rovnakému výsledku. Úplné pravidlá s�
 graph TD
     A1["Vlastník alebo jeho zástupca požiada o výmaz"] --> B1["Úrad skontroluje oprávnenie, dôvod, doklady a poplatok"]
     A2["Úrad začne konanie bez žiadosti zo zákonného dôvodu"] --> B2["Úrad preukáže dôvod a umožní dotknutým osobám vyjadriť sa"]
-    B1 --> C["Úrad rozhodne"]
+    B1 --> C{"Úrad rozhodne o výmaze?"}
     B2 --> C
     C -->|Zamietnutie alebo zastavenie| X["Aktuálny zápis zostane nezmenený"]
-    C -->|Kladný výsledok| D["Rozhodnutie, register a osvedčenie musia mať zhodný právny účinok"]
+    C -->|Kladné rozhodnutie| D["Vykonať právne účinky výmazu"]
     D --> E["Aktuálny zápis sa ukončí a história zostane zachovaná"]
     D --> F["Dopravný úrad vydá osvedčenie o výmaze"]
     E --> G["Aktualizuje sa aktuálna aj historická časť registra v zákonnom rozsahu"]

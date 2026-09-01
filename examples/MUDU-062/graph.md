@@ -10,12 +10,12 @@ z vlastného podnetu úradu ešte nemá dohodnutý postup. Úplné pravidlá sú
 graph TD
     A["Existuje aktuálny zápis lietadla"] --> B["Oprávnená osoba požiada o presne určenú zmenu"]
     B --> C["Úrad porovná pôvodné a požadované hodnoty, doklady a poplatok"]
-    C --> D["Kontrola lietadla a všetkých motorov v SIS"]
+    C --> D{"Výsledok kontroly lietadla a všetkých motorov v SIS"}
     D -->|Jednoznačný nález| X["Register sa nezmení a informuje sa Policajný zbor"]
-    D -->|Bez jednoznačného nálezu| E["Úrad rozhodne o konkrétnej zmene"]
+    D -->|Bez jednoznačného nálezu| E{"Úrad konkrétnu zmenu schváli?"}
     E -->|Zamietnutie alebo zastavenie| Y["Register zostane nezmenený"]
     E -->|Kladné právoplatné rozhodnutie| F["Vykoná sa iba schválená zmena a zachová sa história"]
-    F --> G["Mení sa údaj uvedený v osvedčení?"]
+    F --> G{"Mení sa údaj uvedený v osvedčení?"}
     G -->|Áno| H["Pôvodné osvedčenie sa vráti a vydá sa nové"]
     G -->|Nie| I["Existujúce osvedčenie zostane platné"]
     H --> J["Aktualizuje sa príslušná verejná alebo neverejná časť registra"]

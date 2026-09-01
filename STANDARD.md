@@ -56,12 +56,13 @@ cyklus sa nevkladá do definície iného procesu.
 Verejné súbory pod `examples/` sú pracovné kópie určené na posúdenie. Riadené
 portfólio môže aktuálne definície uchovávať na kanonickom mieste uvedenom vyššie.
 
-## Povinné metadáta na začiatku
+## Povinné strojové metadáta na začiatku
 
-Súbor začína metadátami YAML s týmito kľúčmi v uvedenom poradí:
+Súbor začína neviditeľným komentárom HTML, ktorý obsahuje metadáta YAML s
+týmito kľúčmi v uvedenom poradí:
 
-```yaml
----
+```text
+<!-- mudu-process-definition-metadata
 schema: mudu-process-definition/v1
 process_id: MUDU-NNN
 catalogue_id: "NNN"
@@ -77,8 +78,12 @@ language: sk
 source_baseline_date: YYYY-MM-DD
 supersedes: null
 related_processes: []
----
+-->
 ```
+
+Komentár je súčasťou zdrojového Markdownu a nástroje ho čítajú deterministicky.
+GitHub ho v náhľade nezobrazí, takže človek uvidí najprv názov, stav a rýchly
+prehľad procesu. Metadáta sa nesmú duplikovať do viditeľnej technickej tabuľky.
 
 `catalogue_id` je trojmiestny text v úvodzovkách. Hodnotu ako `063` nikdy
 nezapisujte bez úvodzoviek: niektoré čítačky YAML ju môžu vyhodnotiť ako osmičkové
@@ -123,6 +128,11 @@ Stavy:
 - `CONFLICT`: zdroje si odporujú alebo implementácia nezodpovedá požiadavke;
 - `UNKNOWN`: dôkazy nestačia;
 - `NOT_APPLICABLE`: riadok sa nepoužije a obsahuje dôvod.
+
+Vo verejnej kópii môže `CONFIRMED` pri vrstve `CURRENT_IMPLEMENTATION` znamenať,
+že autor priamo skontroloval pomenovaný interný podklad. Neznamená to verejne
+zopakovateľné overenie ani ľudské schválenie procesu. Súkromný zdroj musí zostať
+označený ako nezverejnený a príklad ako `DRAFT / UNCONFIRMED`.
 
 Modality sú `MUST` (musí), `MUST_NOT` (nesmie), `SHOULD` (mal by), `MAY`
 (môže) a `DESCRIPTIVE` (opis). `MUST` a `MUST_NOT` môžu byť `CONFIRMED` iba
@@ -390,3 +400,14 @@ nezávisle zopakovať kontrolu internej implementácie.
 Nedokazuje aktuálnosť zdrojov, správnosť významu, prijatie ministerstvom,
 zhodu implementácie Netgrif ani úspešné formálne či prevádzkové testy. Každý
 z týchto stavov musí zostať uvedený samostatne.
+
+## Pravidlá súboru `graph.md`
+
+- Diagram zobrazuje iba skutočný priebeh procesu.
+- Činnosť alebo stav používa obdĺžnik; rozhodnutie používa kosoštvorec a každá
+  odchádzajúca hrana pomenúva výsledok rozhodnutia.
+- Otázka, medzera, zdroj, spoločná entita ani možný dopad sa nesmú tváriť ako
+  krok procesu. Uvádzajú sa pod diagramom s presným `GAP-*`, `Q-*` alebo `DEP-*`.
+- Zjednodušenie nesmie vymyslieť poradie, ktoré podrobná definícia nepotvrdzuje.
+- Diagram musí prejsť kompiláciou Mermaid a vizuálnou kontrolou v skutočnom
+  zobrazení GitHubu.

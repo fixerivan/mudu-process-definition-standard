@@ -8,10 +8,10 @@ Diagram ukazuje iba zjednodušený priebeh. Úplné pravidlá sú v
 ```mermaid
 graph TD
     A["Vlastník alebo jeho zástupca podá žiadosť"] --> B["Úrad skontroluje lietadlo, údaje a navrhovanú značku"]
-    B --> C["Úrad rozhodne"]
+    B --> C{"Úrad žiadosti vyhovie?"}
     C -->|Žiadosť zamietnutá alebo konanie zastavené| X["Značka nie je predbežne pridelená"]
     C -->|Kladné právoplatné rozhodnutie| D["Značka je predbežne pridelená na jeden rok"]
-    D --> E["Vlastník podá MUDU-061 do jedného roka?"]
+    D --> E{"Vlastník podá MUDU-061 do jedného roka?"}
     E -->|Áno| F["Predbežné pridelenie zostane platné počas zápisu"]
     E -->|Nie| G["Predbežné pridelenie zanikne"]
 ```

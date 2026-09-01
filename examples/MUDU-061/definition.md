@@ -1,10 +1,10 @@
----
+<!-- mudu-process-definition-metadata
 schema: mudu-process-definition/v1
 process_id: MUDU-061
 catalogue_id: "061"
 catalogue_name: "Žiadosť o zápis lietadla do registra lietadiel"
 canonical_name: "Zápis lietadla do registra lietadiel Slovenskej republiky"
-definition_version: 0.1.3
+definition_version: 0.1.4
 definition_status: DRAFT
 authority_status: UNCONFIRMED
 source_selection: SELECTED
@@ -12,9 +12,9 @@ implementation_conformance: NONCONFORMANT
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: 2026-09-01
-supersedes: "MUDU-061@0.1.2"
+supersedes: "MUDU-061@0.1.3"
 related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
----
+-->
 
 # MUDU-061 — Zápis lietadla do registra lietadiel Slovenskej republiky
 
@@ -347,6 +347,7 @@ related_processes: [MUDU-060, MUDU-062, MUDU-063, MUDU-091]
 | 0.1.1 | 2026-09-01 | Krížová kontrola pri MUDU-062 odhalila rozpor medzi kódom PEP 3035 a kódom CSV 200 a uzavrela vzájomnú hranicu MUDU-061/062; MUDU-063 ešte nebolo spracované. | UNCONFIRMED | DRAFT |
 | 0.1.2 | 2026-09-01 | Kontrola štyroch procesov vytvorila prvý vzájomne konzistentný stav: MUDU-061 vytvára aktuálny zápis, MUDU-062 ho mení a MUDU-063 ho právoplatne ukončuje pri zachovaní histórie; otvorené implementačné konflikty zostávajú výslovné. | UNCONFIRMED | DRAFT |
 | 0.1.3 | 2026-09-01 | Doplnený ľudský rýchly prehľad a jazykové spresnenia bez zmeny vecných pravidiel procesu. | UNCONFIRMED | DRAFT |
+| 0.1.4 | 2026-09-01 | Strojové metadáta presunuté do neviditeľného komentára, aby sa pri otvorení dokumentu zobrazil najprv ľudský obsah; vecné pravidlá sa nezmenili. | UNCONFIRMED | DRAFT |
 
 ## 19. Register zdrojov
 

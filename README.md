@@ -15,9 +15,23 @@ legislatívou, dohodnutým postupom a tým, čo dnes robí systém.
 | [`SKILL.md`](SKILL.md) | Postup, podľa ktorého môže ľubovoľný schopný LLM definíciu vytvoriť alebo skontrolovať |
 | [`examples/`](examples/) | Štyri rozpracované procesy MUDU-060 až MUDU-063 a ich jednoduché diagramy |
 
+### Spracované procesy
+
+| Proces | Rýchle pochopenie | Úplná definícia |
+| --- | --- | --- |
+| MUDU-060 — Predbežné pridelenie registrovej značky | [Diagram](examples/MUDU-060/graph.md) | [Definícia](examples/MUDU-060/definition.md) |
+| MUDU-061 — Zápis lietadla do registra | [Diagram](examples/MUDU-061/graph.md) | [Definícia](examples/MUDU-061/definition.md) |
+| MUDU-062 — Zmena údajov v registri | [Diagram](examples/MUDU-062/graph.md) | [Definícia](examples/MUDU-062/definition.md) |
+| MUDU-063 — Výmaz lietadla z registra | [Diagram](examples/MUDU-063/graph.md) | [Definícia](examples/MUDU-063/definition.md) |
+
 Repozitár zámerne neobsahuje interné dokumenty, zdrojový kód ani pracovné dáta
 projektu. Verejné právne predpisy a formuláre sú prepojené priamo. Interné
 zdroje sú iba pomenované, aby bolo zrejmé, z čoho tvrdenie vzniklo.
+
+Pri internom zdroji znamená `CONFIRMED`, že autor návrhu daný podklad priamo
+skontroloval. Neznamená to, že verejný čitateľ môže kontrolu nezávisle zopakovať
+alebo že tvrdenie schválilo ministerstvo. Také tvrdenie zostáva označené vrstvou
+`CURRENT_IMPLEMENTATION` a celý príklad zostáva `DRAFT / UNCONFIRMED`.
 
 ## Ako začať
 
@@ -69,6 +83,8 @@ iba, že autor návrhu určil zdroje použité pri spracovaní.
   kroky, výstupy, otázky a diagramy.
 - **Angličtina označuje systémovú syntax:** YAML kľúče, stabilné ID, povolené
   stavy ako `DRAFT`, `LAW` alebo `CONFLICT` a pokyny v `SKILL.md`.
+- Strojové metadáta sú na začiatku zdrojového súboru v neviditeľnom komentári,
+  takže GitHub zobrazí najprv názov a ľudský prehľad, nie technickú tabuľku.
 - Presné názvy súborov, polí, prechodov a hodnôt kódu zostávajú nezmenené a
   zapisujú sa ako kód, napríklad `vehicle.xml` alebo `reason_delete`.
 - Angličtina sama neurčuje autoritu tvrdenia. Tú vždy určuje výslovná vrstva,

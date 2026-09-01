@@ -7,13 +7,13 @@ Diagram ukazuje iba zjednodušený priebeh. Úplné pravidlá sú v
 
 ```mermaid
 graph TD
-    A["Vlastník alebo jeho zástupca podá žiadosť"] --> B["Úrad skontroluje oprávnenie, údaje, prílohy a poplatok"]
+    A["Vlastník alebo jeho zástupca podá žiadosť"] --> B{"Je podanie úplné a podmienky sú splnené?"}
     B -->|Nedostatok možno odstrániť| B1["Doplnenie alebo prerušenie konania"]
     B1 --> B
     B -->|Podmienky nie sú splnené| X["Lietadlo sa nezapíše"]
-    B -->|Podanie je úplné a podmienky sú splnené| C["Kontrola lietadla a všetkých motorov v SIS"]
+    B -->|Áno| C{"Výsledok kontroly lietadla a všetkých motorov v SIS"}
     C -->|Jednoznačný nález| Y["Lietadlo sa nezapíše a informuje sa Policajný zbor"]
-    C -->|Bez jednoznačného nálezu| D["Úrad rozhodne"]
+    C -->|Bez jednoznačného nálezu| D{"Úrad žiadosti vyhovie?"}
     D -->|Zamietnutie alebo zastavenie| X
     D -->|Kladné právoplatné rozhodnutie| E["Zápis do registra a vznik štátnej príslušnosti SR"]
     E --> F["Pridelenie značky, vydanie osvedčenia a aktualizácia verejnej časti registra"]

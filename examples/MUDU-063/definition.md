@@ -1,10 +1,10 @@
----
+<!-- mudu-process-definition-metadata
 schema: mudu-process-definition/v1
 process_id: MUDU-063
 catalogue_id: "063"
 catalogue_name: "Výmaz lietadla z registra lietadiel Slovenskej republiky."
 canonical_name: "Výmaz lietadla z registra lietadiel Slovenskej republiky"
-definition_version: 0.1.2
+definition_version: 0.1.3
 definition_status: DRAFT
 authority_status: UNCONFIRMED
 source_selection: SELECTED
@@ -12,9 +12,9 @@ implementation_conformance: NONCONFORMANT
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: 2026-09-01
-supersedes: "MUDU-063@0.1.1"
+supersedes: "MUDU-063@0.1.2"
 related_processes: [MUDU-060, MUDU-061, MUDU-062, MUDU-091]
----
+-->
 
 # MUDU-063 — Výmaz lietadla z registra lietadiel Slovenskej republiky
 
@@ -323,6 +323,7 @@ related_processes: [MUDU-060, MUDU-061, MUDU-062, MUDU-091]
 | 0.1.0 | 2026-09-01 | Prvý manuálny zdrojovo uzavretý návrh MUDU-063; oddelená žiadateľská vetva a vetva z vlastného podnetu, história registra, prílohy podľa § 3, poplatok, hranica bez SIS, F472, SharePoint, EA, Petriflow, štyri výstupy a chýbajúce testy; hranice MUDU-060/061/062/091 sú výslovné. | UNCONFIRMED | DRAFT |
 | 0.1.1 | 2026-09-01 | Opravená autorita TIM-063-006:šablóna preukazuje iba aktuálne implementačné znenie, nie potvrdené všeobecné pravidlo účinku; Q-063-003 zostáva otvorené. | UNCONFIRMED | DRAFT |
 | 0.1.2 | 2026-09-01 | Doplnený ľudský rýchly prehľad a jazykové spresnenia bez zmeny vecných pravidiel procesu. | UNCONFIRMED | DRAFT |
+| 0.1.3 | 2026-09-01 | Strojové metadáta presunuté do neviditeľného komentára, aby sa pri otvorení dokumentu zobrazil najprv ľudský obsah; vecné pravidlá sa nezmenili. | UNCONFIRMED | DRAFT |
 
 ## 19. Register zdrojov
 

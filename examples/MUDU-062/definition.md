@@ -1,10 +1,10 @@
----
+<!-- mudu-process-definition-metadata
 schema: mudu-process-definition/v1
 process_id: MUDU-062
 catalogue_id: "062"
 catalogue_name: "Žiadosť o zmenu zápisu do registra lietadiel"
 canonical_name: "Zmena údajov zapísaných v registri lietadiel Slovenskej republiky"
-definition_version: 0.1.2
+definition_version: 0.1.3
 definition_status: DRAFT
 authority_status: UNCONFIRMED
 source_selection: SELECTED
@@ -12,9 +12,9 @@ implementation_conformance: NONCONFORMANT
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: 2026-09-01
-supersedes: "MUDU-062@0.1.1"
+supersedes: "MUDU-062@0.1.2"
 related_processes: [MUDU-060, MUDU-061, MUDU-063, MUDU-091]
----
+-->
 
 # MUDU-062 — Zmena údajov zapísaných v registri lietadiel Slovenskej republiky
 
@@ -346,6 +346,7 @@ related_processes: [MUDU-060, MUDU-061, MUDU-063, MUDU-091]
 | 0.1.0 | 2026-09-01 | Prvý manuálny zdrojovo uzavretý návrh MUDU-062; zosúladil zákonnú povinnosť zmeny, oprávnenia žiadateľov, SIS, podmienené osvedčenie, poplatok podľa dokladu, sedem volieb rozhrania, F470/F471, SharePoint, EA, Petriflow, výstupy a testy; hranice MUDU-060/061/063/091 sú výslovné. | UNCONFIRMED | DRAFT |
 | 0.1.1 | 2026-09-01 | Kontrola s MUDU-063 vytvorila prvý vzájomne konzistentný stav štyroch procesov; výmaz nie je zmena, nevyžaduje SIS a spoločné časové účinky zostávajú otvorené. | UNCONFIRMED | DRAFT |
 | 0.1.2 | 2026-09-01 | Doplnený ľudský rýchly prehľad a jazykové spresnenia bez zmeny vecných pravidiel procesu. | UNCONFIRMED | DRAFT |
+| 0.1.3 | 2026-09-01 | Strojové metadáta presunuté do neviditeľného komentára, aby sa pri otvorení dokumentu zobrazil najprv ľudský obsah; vecné pravidlá sa nezmenili. | UNCONFIRMED | DRAFT |
 
 ## 19. Register zdrojov
 
