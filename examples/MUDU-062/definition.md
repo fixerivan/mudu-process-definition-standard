@@ -102,7 +102,7 @@ related_processes: [MUDU-060, MUDU-061, MUDU-063, MUDU-091]
 ## 6. Údaje formulára
 
 | ID | Údaj | Typ | Kardinalita | Zdroj/hodnota | Validácia | Vrstva | Stav | Zdroje |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | FLD-062-001 | Vlastník alebo spoluvlastníci | Štruktúrovaná identita | 1..* | Rozsah § 26 ods. 5 písm. a) | Povinná identifikácia aktuálneho vlastníka; nové údaje len pri dotknutom delta | LAW | CONFIRMED | SRC-062-001, SRC-062-002 |
 | FLD-062-002 | Prevádzkovateľ | Štruktúrovaná identita | 1 | Rozsah § 26 ods. 5 písm. a) | Aktuálna identita; nový právny titul pri zmene prevádzkovateľa | LAW | CONFIRMED | SRC-062-001, SRC-062-002 |
 | FLD-062-003 | Záložný veriteľ, záložné právo a zabezpečená pohľadávka | Štruktúrované údaje | 0..* | Iba ak je lietadlo, motor alebo vrtuľa zaťažená alebo sa mení záložný údaj | Oddeliť pridanie, zmenu a ukončenie; RULE-062-006 | LAW | CONFIRMED | SRC-062-001, SRC-062-002 |
