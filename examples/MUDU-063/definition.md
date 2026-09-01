@@ -4,7 +4,7 @@ process_id: MUDU-063
 catalogue_id: "063"
 catalogue_name: "Výmaz lietadla z registra lietadiel Slovenskej republiky."
 canonical_name: "Výmaz lietadla z registra lietadiel Slovenskej republiky"
-definition_version: 0.1.0
+definition_version: 0.1.1
 definition_status: DRAFT
 authority_status: UNCONFIRMED
 source_selection: SELECTED
@@ -12,7 +12,7 @@ implementation_conformance: NONCONFORMANT
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: 2026-09-01
-supersedes: null
+supersedes: "MUDU-063@0.1.0"
 related_processes: [MUDU-060, MUDU-061, MUDU-062, MUDU-091]
 ---
 
@@ -139,7 +139,7 @@ related_processes: [MUDU-060, MUDU-061, MUDU-062, MUDU-091]
 | TIM-063-003 | Rozklad | 15 dní | Oznámenie rozhodnutia | LAW | CONFIRMED | SRC-063-001, SRC-063-004 |
 | TIM-063-004 | Nezvestnosť | Viac ako 12 mesiacov | Preukázaný začiatok nezvestnosti | LAW | CONFIRMED | SRC-063-001 |
 | TIM-063-005 | Neplatnosť osvedčenia o letovej spôsobilosti | Viac ako 24 mesiacov | Začiatok neplatnosti osvedčenia | LAW | CONFIRMED | SRC-063-001 |
-| TIM-063-006 | Účinok výmazu | Ku dňu právoplatnosti rozhodnutia podľa aktuálnej rozhodovacej šablóny; presné všeobecné pravidlo musí byť súčasťou prijatého procesného kontraktu | Právoplatnosť rozhodnutia | OFFICIAL_PROCEDURE | CONFIRMED | SRC-063-023 |
+| TIM-063-006 | Aktuálne znenie účinku v šablóne | Rozhodovacia šablóna uvádza výmaz ku dňu právoplatnosti; nejde o prijaté všeobecné pravidlo a presný účinný okamih zostáva otvorený v Q-063-003 | Technické spracovanie právoplatnosti | CURRENT_IMPLEMENTATION | CONFLICT | SRC-063-023 |
 | TIM-063-007 | Aktuálne technické správoplatnenie | Dve implementačné cesty zapisujú dnešný dátum pri manuálnom alebo workflow potvrdení | Technické potvrdenie právoplatnosti | CURRENT_IMPLEMENTATION | CONFLICT | SRC-063-013, SRC-063-015 |
 
 ## 9. Rozhodovacie pravidlá a invarianty
@@ -308,6 +308,7 @@ related_processes: [MUDU-060, MUDU-061, MUDU-062, MUDU-091]
 | Verzia | Dátum | Zmena | Autorita | Stav |
 | --- | --- | --- | --- | --- |
 | 0.1.0 | 2026-09-01 | Prvý manuálny zdrojovo uzavretý návrh MUDU-063; oddelená žiadateľská a ex-officio vetva, história registra, §3 prílohy, poplatok, no-SIS hranica, F472, SharePoint, EA, Petriflow, štyri výstupy a test/mock medzery; recipročné hranice MUDU-060/061/062/091 sú explicitné. | UNCONFIRMED | DRAFT |
+| 0.1.1 | 2026-09-01 | Opravená autorita TIM-063-006:šablóna preukazuje iba aktuálne implementačné znenie,nie potvrdené všeobecné pravidlo účinku;Q-063-003 zostáva otvorené. | UNCONFIRMED | DRAFT |
 
 ## 19. Register zdrojov
 

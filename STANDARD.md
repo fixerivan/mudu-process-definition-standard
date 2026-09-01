@@ -23,6 +23,10 @@ There is exactly one current definition per official catalogue ID. Historical
 versions remain in Git. Related catalogue processes are referenced by ID and
 never embedded as additional lifecycles.
 
+The source-clean files under `examples/` in this public repository are review
+copies. A governed portfolio may keep its current definitions under the
+canonical path above.
+
 ## Required front matter
 
 The file begins with YAML front matter containing these keys in this order:
@@ -37,13 +41,13 @@ canonical_name: "Current legally precise name"
 definition_version: 0.1.0
 definition_status: DRAFT
 authority_status: UNCONFIRMED
-source_selection: SELECTED
+source_selection: UNKNOWN
 implementation_conformance: NOT_VERIFIED
 formal_verification: NOT_RUN
 language: sk
 source_baseline_date: YYYY-MM-DD
 supersedes: null
-related_processes: [MUDU-NNN]
+related_processes: []
 ---
 ```
 
@@ -62,6 +66,10 @@ Enums:
 
 Only authorized human acceptance may set `ACCEPTED`, `FROZEN`,
 `ANALYST_CONFIRMED` or `MINISTRY_CONFIRMED`.
+
+Use `NONCONFORMANT` only when at least one exact implementation mismatch is
+recorded in sections 16 or 17. Use `PARTIAL` when only part of the implementation
+was evaluated,and `NOT_VERIFIED` when no exact conformance evaluation exists.
 
 ## Claim semantics
 
@@ -310,6 +318,10 @@ Source types include `LAW`, `OFFICIAL_PROCEDURE`, `OFFICIAL_FORM`,
 Every source reference used elsewhere must exist here. A missing hash is
 `UNKNOWN`,never blank. URLs alone do not identify a source revision.
 
+A source-clean public copy may replace a private locator and hash with
+`UNKNOWN`,but it must say that the private evidence was not redistributed. Such
+a copy is review material,not independently reproducible implementation evidence.
+
 ## Versioning and freeze
 
 - Patch: clarification or evidence correction without changed required behavior.
@@ -321,7 +333,7 @@ Every source reference used elsewhere must exist here. A missing hash is
 
 ## Completeness boundary
 
-Passing the structural validator means only that the document follows this
+Passing structural validation means only that the document follows this
 format. It does not prove that sources are current,semantics are correct,the
 ministry accepted the definition,Netgrif implements it,or formal/runtime tests
 pass. Those states remain explicit in front matter and evidence.

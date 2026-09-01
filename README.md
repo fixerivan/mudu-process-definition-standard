@@ -31,11 +31,9 @@ exact rule it changes instead of rewriting an ambiguous Word document.
 
 | Item | Meaning |
 | --- | --- |
-| Standard `MuduProcessDefinition/v1` | The required format and review rules |
+| Standard `mudu-process-definition/v1` | The required format and review rules |
 | Example marked `DRAFT / UNCONFIRMED` | Reviewed proposal, not ministry approval |
-| `CROSS_PROCESS_REVIEWED` | Connected definitions were checked for contradictions |
 | `FROZEN` | An authorized person accepted that exact Git revision |
-| Validator `PASS` | Structure is valid; semantics and implementation are not proved |
 
 The separation matters: a versioned standard can be stable while individual
 process definitions continue through analyst/ministry review.
@@ -50,7 +48,9 @@ review can refer to a different revision than the one being built.
 
 Example: `RegistrationMark` is shared by MUDU-060, 061, 062, 063 and 091. A
 change to its meaning or lifetime must trigger review of all five. The graph
-finds that candidate set; the definitions explain the exact impact.
+in the full project system finds that candidate set;the definitions explain the
+exact impact. This minimal public repository does not contain the internal
+dependency graph or private evidence.
 
 ## How the team uses it
 
@@ -63,16 +63,16 @@ finds that candidate set; the definitions explain the exact impact.
    analyst. A passing candidate is linked to the exact frozen definition.
 
 ```mermaid
-flowchart LR
-    E[Law, forms and decisions] --> D[One process definition]
-    I[EA, Petriflow and code] --> D
-    D --> G[Show dependencies and conflicts]
-    G --> R[Analyst + ministry review]
-    R -->|accept exact revision| F[Freeze]
-    F --> P[Implement in Netgrif]
-    P --> V[Test formal rules, API, data and UI]
-    V -->|pass| C[Candidate matches definition]
-    V -->|bug| P
+graph LR
+    E["Law, forms and accepted decisions"] --> D["One process definition"]
+    I["EA, Petriflow and code evidence"] --> D
+    D --> G["Find dependencies and conflicts"]
+    G --> R["Analyst and ministry review"]
+    R -->|Accept exact revision| F["Freeze exact version"]
+    F --> P["Implement in Netgrif"]
+    P --> V["Verify formal rules, API, data and UI"]
+    V -->|Pass| C["Candidate matches definition"]
+    V -->|Bug| P
 ```
 
 The graph coordinates evidence and impact. It never approves business meaning.
@@ -86,7 +86,7 @@ The graph coordinates evidence and impact. It never approves business meaning.
 | [`examples/`](examples/) | Four source-clean DRAFT definitions and one graph per process |
 
 Each `graph.md` shows only the actual process flow. Related processes and open
-issues are listed separately below it with links to their definition records;
+issues are listed separately below it with references to their definition records;
 they are never drawn as fake process inputs or steps.
 
 Private project evidence and proprietary implementation source are not copied

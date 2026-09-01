@@ -4,7 +4,7 @@
 
 ```mermaid
 graph TD
-    A["Owner submits registration request"] --> B["Check eligibility, data, documents and fee"]
+    A["Owner or representative submits request"] --> B["Check eligibility, data, documents and fee"]
     B --> C["Check aircraft and every engine in SIS"]
     C -->|Clear| D["Decide"]
     C -->|Hit| X["Do not register and notify Police"]
@@ -13,8 +13,9 @@ graph TD
     E --> F["Issue certificate and update public register"]
 ```
 
-Related processes:`MUDU-060` optional preliminary mark,`MUDU-062` later
-change,`MUDU-063` deregistration and `MUDU-091` Mode S/ELT.
+Optional predecessor:`MUDU-060` preliminary mark. Separate downstream
+processes:`MUDU-062` change and `MUDU-063` deregistration. Portfolio impact
+only:`MUDU-091` Mode S/ELT.
 
 ## Open issues — not part of the process flow
 

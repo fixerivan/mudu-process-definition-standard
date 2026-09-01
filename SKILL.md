@@ -39,9 +39,9 @@ new definition from its required front matter and 19 table definitions.
   semantic record. Another model,similarity,embeddings or generated text may
   suggest evidence but cannot select identity,authority or business meaning.
   Deterministic extraction,query and validation are allowed.
-- Use a graph as a dependency/conflict oracle,never authority. Close every
-  direct material dependency (Tier A) and manually review every possible
-  indirect impact (Tier B) under the protocol.
+- Use a graph as a dependency/conflict index,never authority. Account for every
+  direct material dependency and manually inspect every shared item that may
+  create an indirect impact.
 - A human process diagram contains only actual execution semantics:trigger,
   activity,decision,state,outcome and a genuine process handoff. Never draw a
   source,shared entity,impact candidate,gap,conflict or unknown as if it were a
@@ -50,8 +50,8 @@ new definition from its required front matter and 19 table definitions.
 
 ## Workflow
 
-1. Set the exact process ledger entry to `IN_RESEARCH` and inspect its complete
-   typed graph neighbourhood.
+1. Identify the exact `MUDU-NNN`. If the project has a portfolio ledger,record
+   it as `IN_RESEARCH`. Inspect its complete typed graph neighbourhood.
 2. Identify and manually read the exact authoritative source universe.
 3. Reconcile law,official procedure/form,accepted intent and current
    implementation; record conflicts rather than choosing silently.
